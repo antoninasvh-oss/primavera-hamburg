@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Work+Sans:wght@300;400;500;600&amp;family=Marck+Script&amp;display=swap" rel="stylesheet">
+<title>Primavera · Italienisches Restaurant Hamburg Altstadt | Pizza, Pasta &amp; Catering</title>
+<meta name="description" content="Primavera – authentische italienische Küche im Herzen Hamburgs. Pizza, Pasta, Antipasti &amp; Catering. Jetzt Tisch reservieren. Hopfensack 18, 20457 Hamburg.">
+<meta name="keywords" content="Italienisches Restaurant Hamburg, Pizza Hamburg, Pasta Hamburg, Italienisches Essen Hamburg, Catering Hamburg, Mediterranes Restaurant Hamburg, Restaurant Hamburg Altstadt">
+<meta property="og:type" content="restaurant">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Primavera · Italienisches Restaurant im Herzen Hamburgs">
+<meta property="og:description" content="Authentische italienische Küche, Pizza aus dem Holzofen, hausgemachte Pasta und Catering für Ihre Veranstaltung.">
+<meta property="og:site_name" content="Ristorante Primavera">
+<meta property="og:image" content="https://www.primavera-hamburg.de/images/hero.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.primavera-hamburg.de/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.primavera-hamburg.de/images/hero.jpg">
+<meta name="twitter:title" content="Primavera · Italienisches Restaurant im Herzen Hamburgs">
+<meta name="twitter:description" content="Authentische italienische Küche, Pizza aus dem Holzofen, hausgemachte Pasta und Catering für Ihre Veranstaltung.">
+<link rel="canonical" href="https://www.primavera-hamburg.de/">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{-webkit-font-smoothing:antialiased;background:#F4EBDD}
+  input,select,textarea,button{font-family:inherit}
+  ::selection{background:#B25A30;color:#FBF6EC}
+  @keyframes floatup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+  @media(max-width:900px){
+    [data-nav="desktop"]{display:none!important}
+    [data-nav="mobile"]{display:block!important}
+    [data-grid="2to1"]{grid-template-columns:1fr!important;gap:40px!important}
+    [data-grid="footer"]{grid-template-columns:1fr!important;gap:32px!important}
+    [data-grid="gallery"]{grid-template-columns:1fr 1fr!important}
+  }
+  @media(max-width:560px){
+    [data-grid="gallery"]{grid-template-columns:1fr!important}
+    [data-lang]{display:none!important}
+    [data-call] [data-callnum]{display:none!important}
+    [data-call]{padding:10px 12px!important}
+    section{padding-left:18px!important;padding-right:18px!important}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Ristorante Primavera",
+  "image":"https://www.primavera-hamburg.de/images/hero.jpg",
+  "servesCuisine":["Italian","Mediterranean","Pizza"],
+  "priceRange":"€€",
+  "telephone":"+49 40 32506940",
+  "email":"primavera.altstadt@gmail.com",
+  "url":"https://www.primavera-hamburg.de/",
+  "address":{"@type":"PostalAddress","streetAddress":"Hopfensack 18","postalCode":"20457","addressLocality":"Hamburg","addressCountry":"DE"},
+  "geo":{"@type":"GeoCoordinates","latitude":53.5461,"longitude":9.9944},
+  "sameAs":["https://www.instagram.com/primaverahamburg/"],
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"11:30","closes":"15:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"17:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"16:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"17:00","closes":"22:00"}],
+  "acceptsReservations":true
+}
+</script>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="font-family:'Work Sans',-apple-system,sans-serif;color:#2A2018;background:#F4EBDD;min-height:100vh;position:relative;overflow-x:hidden">
+
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <button onClick="{{ goTop }}" style="display:flex;align-items:center;gap:11px;background:none;border:none;cursor:pointer;text-align:left;padding:0">
+        <img src="images/logo-real.png" alt="Primavera · Pizza Pasta Salate" style="height:50px;width:auto;display:block">
+      </button>
+
+      <nav style="display:flex;align-items:center;gap:30px" data-nav="desktop">
+        <button onClick="{{ navAbout }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.about }}</button>
+        <button onClick="{{ navMenu }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.menu }}</button>
+        <button onClick="{{ navCatering }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.catering }}</button>
+        <button onClick="{{ navGallery }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.gallery }}</button>
+        <button onClick="{{ navContact }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.contact }}</button>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:14px">
+        <div data-lang="" style="display:flex;align-items:center;border:1px solid {{ langBorder }};border-radius:30px;overflow:hidden">
+          <button onClick="{{ setDE }}" style="{{ deBtn }}">DE</button>
+          <button onClick="{{ setEN }}" style="{{ enBtn }}">EN</button>
+        </div>
+        <a href="https://www.instagram.com/primaverahamburg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;color:{{ headerInk }};padding:4px" style-hover="color:#B25A30"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+        <a href="tel:+494032506940" data-call="" style="display:inline-flex;align-items:center;gap:8px;background:#B25A30;color:#FBF6EC;border-radius:30px;padding:11px 18px;font-size:13.5px;font-weight:600;letter-spacing:.3px;cursor:pointer;white-space:nowrap;text-decoration:none" style-hover="background:#c66534"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex:none"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg><span data-callnum="">040 · 32 50 69 40</span></a>
+        <button onClick="{{ toggleNav }}" data-nav="mobile" style="background:none;border:none;cursor:pointer;padding:6px;display:none" aria-label="Menu">
+          <span style="display:block;width:24px;height:2px;background:{{ headerInk }};margin:5px 0"></span>
+          <span style="display:block;width:24px;height:2px;background:{{ headerInk }};margin:5px 0"></span>
+          <span style="display:block;width:24px;height:2px;background:{{ headerInk }};margin:5px 0"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ mobileNav }}">
+    <div style="position:fixed;inset:0;z-index:90;background:#221A11;display:flex;flex-direction:column;padding:90px 32px 32px;animation:fadein .25s ease">
+      <button onClick="{{ navAbout }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.about }}</button>
+      <button onClick="{{ navMenu }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.menu }}</button>
+      <button onClick="{{ navCatering }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.catering }}</button>
+      <button onClick="{{ navGallery }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.gallery }}</button>
+      <button onClick="{{ navContact }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.contact }}</button>
+      <button onClick="{{ navReserve }}" style="margin-top:28px;background:#B25A30;color:#FBF6EC;border:none;border-radius:30px;padding:16px;font-size:15px;font-weight:500;cursor:pointer">{{ t.cta.reserve }}</button>
+      <button onClick="{{ toggleNav }}" style="position:absolute;top:28px;right:28px;background:none;border:none;color:#FBF6EC;font-size:30px;cursor:pointer;line-height:1">×</button>
+    </div>
+  </sc-if>
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main>
+
+    <!-- HERO -->
+    <section style="position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(95deg,rgba(18,12,7,.95) 0%,rgba(18,12,7,.78) 48%,rgba(18,12,7,.5) 100%),url('images/pizza-macro-web.jpg');background-size:cover;background-position:center;overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 18% 30%,rgba(178,90,48,.22),transparent 40%),radial-gradient(circle at 82% 75%,rgba(92,102,56,.2),transparent 45%);pointer-events:none"></div>
+      <div style="position:relative;max-width:1200px;margin:0 auto;padding:120px 24px 80px;width:100%">
+        <div style="max-width:760px">
+          <p style="font-family:'Marck Script',cursive;font-size:clamp(38px,5.5vw,62px);color:#e0a06a;line-height:.9;margin-bottom:10px;animation:floatup .6s ease both">Benvenuti</p>
+          <p style="font-size:13px;letter-spacing:5px;text-transform:uppercase;color:#d98a5e;margin-bottom:24px;animation:floatup .7s ease both">{{ t.hero.eyebrow }}</p>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7vw,90px);line-height:1.02;color:#FBF6EC;letter-spacing:-.5px;text-shadow:0 2px 30px rgba(0,0,0,.55);animation:floatup .8s ease .08s both">{{ t.hero.title }}</h1>
+          <p style="margin-top:28px;max-width:520px;font-size:18px;line-height:1.65;color:rgba(251,246,236,.9);font-weight:300;text-shadow:0 1px 16px rgba(0,0,0,.6);animation:floatup .8s ease .16s both">{{ t.hero.subtitle }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:40px;animation:floatup .8s ease .24s both">
+            <button onClick="{{ navReserve }}" style="background:#B25A30;color:#FBF6EC;border:none;border-radius:32px;padding:16px 30px;font-size:14.5px;font-weight:500;letter-spacing:.4px;cursor:pointer" style-hover="background:#c66534">{{ t.cta.reserve }}</button>
+            <button onClick="{{ navMenu }}" style="background:transparent;color:#FBF6EC;border:1px solid rgba(251,246,236,.4);border-radius:32px;padding:16px 30px;font-size:14.5px;font-weight:500;letter-spacing:.4px;cursor:pointer" style-hover="border-color:#FBF6EC;background:rgba(251,246,236,.08)">{{ t.cta.menu }}</button>
+            <button onClick="{{ navCatering }}" style="background:transparent;color:#FBF6EC;border:1px solid rgba(251,246,236,.4);border-radius:32px;padding:16px 30px;font-size:14.5px;font-weight:500;letter-spacing:.4px;cursor:pointer" style-hover="border-color:#FBF6EC;background:rgba(251,246,236,.08)">{{ t.cta.catering }}</button>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(251,246,236,.5)">
+        <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase">{{ t.hero.scroll }}</span>
+        <span style="width:1px;height:34px;background:linear-gradient(rgba(251,246,236,.5),transparent)"></span>
+      </div>
+    </section>
+
+    <!-- ÜBER UNS -->
+    <section id="about" style="background:#F4EBDD;padding:110px 24px">
+      <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" data-grid="2to1">
+        <div>
+          <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#B25A30;margin-bottom:18px">{{ t.about.eyebrow }}</p>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.08;color:#2A2018;margin-bottom:26px">{{ t.about.title }}</h2>
+          <p style="font-size:16.5px;line-height:1.8;color:#57493B;margin-bottom:18px">{{ t.about.p1 }}</p>
+          <p style="font-size:16.5px;line-height:1.8;color:#57493B">{{ t.about.p2 }}</p>
+          <div style="display:flex;gap:40px;margin-top:38px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#5C6638;line-height:1">2009</div>
+              <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#57493B;margin-top:6px">{{ t.about.s1 }}</div>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#5C6638;line-height:1">100%</div>
+              <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#57493B;margin-top:6px">{{ t.about.s2 }}</div>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#5C6638;line-height:1">Forno</div>
+              <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#57493B;margin-top:6px">{{ t.about.s3 }}</div>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;height:520px;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(42,32,24,.5)">
+          <image-slot id="about-photo" src="images/pasta-scampi-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 50%,rgba(26,18,11,.55))"><div style="position:absolute;inset:18px;border:1px solid rgba(251,246,236,.3);border-radius:4px"></div><span style="position:absolute;left:28px;bottom:26px;font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:#FBF6EC;text-shadow:0 1px 12px rgba(0,0,0,.55)">{{ t.about.photo }}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATMOSPHERE BAND -->
+    <section style="position:relative;height:56vh;min-height:380px;overflow:hidden;background:linear-gradient(rgba(20,14,8,.28),rgba(20,14,8,.62)),url('images/terrace.jpg');background-size:cover;background-position:center;background-attachment:fixed">
+      <div style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
+        <p style="font-family:'Marck Script',cursive;font-size:clamp(44px,8vw,84px);color:#FBF6EC;line-height:1;text-shadow:0 2px 30px rgba(0,0,0,.6)">La dolce vita</p>
+        <p style="font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(251,246,236,.82);margin-top:16px;text-shadow:0 1px 12px rgba(0,0,0,.6)">{{ t.video.sub }}</p>
+      </div>
+    </section>
+
+    <!-- SPEISEKARTE -->
+    <section id="menu" style="background:#221A11;padding:110px 24px;color:#FBF6EC">
+      <div style="max-width:1140px;margin:0 auto">
+        <div style="text-align:center;max-width:620px;margin:0 auto 50px">
+          <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#d98a5e;margin-bottom:16px">{{ t.menu.eyebrow }}</p>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,54px);line-height:1.06">{{ t.menu.title }}</h2>
+          <p style="font-size:16px;line-height:1.7;color:rgba(251,246,236,.7);margin-top:18px">{{ t.menu.subtitle }}</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px">
+          <sc-for list="{{ menuCats }}" as="cat" hint-placeholder-count="7">
+            <button onClick="{{ cat.onClick }}" style="{{ cat.style }}">{{ cat.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 56px;max-width:920px;margin:0 auto" data-grid="2to1" key="{{ activeMenuCat }}">
+          <sc-for list="{{ menuItems }}" as="item" hint-placeholder-count="6">
+            <div style="display:flex;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid rgba(251,246,236,.12);animation:floatup .4s ease both">
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#FBF6EC">{{ item.name }}</div>
+                <div style="font-size:13.5px;line-height:1.5;color:rgba(251,246,236,.6);margin-top:4px">{{ item.desc }}</div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#d98a5e;white-space:nowrap">{{ item.price }} €</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="text-align:center;font-size:12.5px;color:rgba(251,246,236,.45);margin-top:44px;line-height:1.7">{{ t.menu.note }}</p>
+      </div>
+    </section>
+
+    <!-- CATERING -->
+    <section id="catering" style="background:#5C6638;padding:110px 24px;color:#FBF6EC">
+      <div style="max-width:1140px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start" data-grid="2to1">
+          <div>
+            <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#dfe3c8;margin-bottom:16px">{{ t.catering.eyebrow }}</p>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.08;margin-bottom:22px">{{ t.catering.title }}</h2>
+            <p style="font-size:16.5px;line-height:1.8;color:rgba(251,246,236,.85);margin-bottom:34px">{{ t.catering.subtitle }}</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <sc-for list="{{ cateringServices }}" as="s" hint-placeholder-count="4">
+                <div style="background:rgba(251,246,236,.08);border:1px solid rgba(251,246,236,.18);border-radius:5px;padding:18px">
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;margin-bottom:5px">{{ s.t }}</div>
+                  <div style="font-size:13px;line-height:1.5;color:rgba(251,246,236,.75)">{{ s.d }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background:#FBF6EC;border-radius:8px;padding:42px 34px;color:#2A2018;box-shadow:0 30px 60px -30px rgba(0,0,0,.4);text-align:center">
+            <p style="font-family:'Marck Script',cursive;font-size:32px;color:#B25A30;line-height:1;margin-bottom:14px">Buon evento!</p>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;margin-bottom:10px">{{ t.catering.contactTitle }}</h3>
+            <p style="font-size:14.5px;line-height:1.7;color:#57493B;margin-bottom:28px;max-width:360px;margin-left:auto;margin-right:auto">{{ t.catering.contactText }}</p>
+            <a href="tel:+494032506940" style="display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,38px);font-weight:600;color:#2A2018;text-decoration:none;letter-spacing:.5px" style-hover="color:#B25A30">040 · 32 50 69 40</a>
+            <div style="margin-top:22px">
+              <a href="tel:+494032506940" style="display:inline-block;background:#B25A30;color:#FBF6EC;border-radius:32px;padding:14px 34px;font-size:15px;font-weight:500;letter-spacing:.4px;text-decoration:none" style-hover="background:#9c4a26">{{ t.reserve.callCta }}</a>
+            </div>
+            <div style="margin-top:24px;padding-top:22px;border-top:1px solid rgba(42,32,24,.12);font-size:14px;color:#57493B">{{ t.catering.orMail }}<br><a href="mailto:primavera.altstadt@gmail.com" style="color:#5C6638;text-decoration:none;border-bottom:1px solid rgba(92,102,56,.4)" style-hover="color:#2A2018">primavera.altstadt@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVIERUNG -->
+    <section id="reserve" style="background:#F4EBDD;padding:110px 24px">
+      <div style="max-width:880px;margin:0 auto;text-align:center">
+        <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#B25A30;margin-bottom:16px">{{ t.reserve.eyebrow }}</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,54px);line-height:1.06;color:#2A2018">{{ t.reserve.title }}</h2>
+        <p style="font-size:16.5px;line-height:1.7;color:#57493B;margin:16px auto 0;max-width:580px">{{ t.reserve.subtitle }}</p>
+      </div>
+
+      <!-- CALL CARD -->
+      <div style="max-width:560px;margin:38px auto 0;background:#221A11;border-radius:12px;padding:40px 30px;text-align:center;box-shadow:0 28px 60px -34px rgba(42,32,24,.65)">
+        <p style="font-family:'Marck Script',cursive;font-size:32px;color:#e0a06a;line-height:1;margin-bottom:12px">Pronto?</p>
+        <a href="tel:+494032506940" style="display:inline-block;font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5.5vw,46px);font-weight:600;color:#FBF6EC;text-decoration:none;letter-spacing:.5px" style-hover="color:#e0a06a">040 · 32 50 69 40</a>
+        <div style="margin-top:24px">
+          <a href="tel:+494032506940" style="display:inline-block;background:#B25A30;color:#FBF6EC;border-radius:32px;padding:15px 36px;font-size:15px;font-weight:500;letter-spacing:.4px;text-decoration:none" style-hover="background:#c66534">{{ t.reserve.callCta }}</a>
+        </div>
+        <p style="font-size:13px;color:rgba(251,246,236,.6);margin-top:20px">{{ t.reserve.hours }}</p>
+      </div>
+
+      <p style="text-align:center;font-size:14px;color:#8a7c6c;margin:24px auto 0;max-width:460px;line-height:1.7">{{ t.reserve.note }}</p>
+    </section>
+
+    <!-- GALERIE -->
+    <section id="gallery" style="background:#FBF6EC;padding:110px 24px">
+      <div style="max-width:1140px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:46px">
+          <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#B25A30;margin-bottom:16px">{{ t.gallery.eyebrow }}</p>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,54px);line-height:1.06;color:#2A2018">{{ t.gallery.title }}</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" data-grid="gallery">
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-spaghetti" src="images/spaghetti-macro-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Spaghetti Scampi</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-pizza-napoli" src="images/pizza-macro-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Pizza Napoli</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-insalata" src="images/insalata-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Insalata Nizza</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-penne" src="images/penne-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Penne in Sahnesauce</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-lasagne" src="images/auflauf-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Lasagne al Forno</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-pizza-table" src="images/pizza-table-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Tartofo</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-tartufo" src="images/dolce-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Antipasti della Casa</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-aperitivo" src="images/spritz-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Aperitivo della Casa</span>
+          </div>
+          <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
+            <image-slot id="gal-penne-delizia" src="images/penne-interior-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Pizza Margherita</span>
+          </div>
+        </div>
+        <p style="text-align:center;font-size:12.5px;color:#8a7c6c;margin-top:24px">{{ t.gallery.note }}</p>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section style="background:#F4EBDD;padding:104px 24px">
+      <div style="max-width:1140px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:46px">
+          <p style="font-family:'Marck Script',cursive;font-size:36px;color:#B25A30;line-height:1;margin-bottom:6px">Grazie!</p>
+          <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#B25A30;margin-bottom:14px">{{ t.reviews.eyebrow }}</p>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.06;color:#2A2018">{{ t.reviews.title }}</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" data-grid="2to1">
+          <sc-for list="{{ testimonials }}" as="r" hint-placeholder-count="3">
+            <div style="background:#FBF6EC;border:1px solid rgba(42,32,24,.08);border-radius:10px;padding:30px;box-shadow:0 20px 44px -34px rgba(42,32,24,.4);display:flex;flex-direction:column;gap:16px">
+              <div style="color:#e0a06a;font-size:17px;letter-spacing:3px">★★★★★</div>
+              <p style="font-size:17px;line-height:1.65;color:#3a2e22;font-family:'Cormorant Garamond',serif;font-style:italic">„{{ r.q }}"</p>
+              <div style="margin-top:auto;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;color:#8a7c6c">{{ r.n }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="text-align:center;font-size:13px;color:#8a7c6c;margin-top:30px">{{ t.reviews.note }}</p>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact" style="background:#221A11;padding:110px 24px;color:#FBF6EC">
+      <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch" data-grid="2to1">
+        <div>
+          <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#d98a5e;margin-bottom:16px">{{ t.contact.eyebrow }}</p>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.08;margin-bottom:34px">{{ t.contact.title }}</h2>
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <div>
+              <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:6px">{{ t.contact.addr }}</div>
+              <div style="font-size:17px;line-height:1.6;color:rgba(251,246,236,.9)">Ristorante Primavera<br>Hopfensack 18<br>20457 Hamburg</div>
+            </div>
+            <div style="display:flex;gap:48px;flex-wrap:wrap">
+              <div>
+                <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:6px">{{ t.contact.phone }}</div>
+                <a href="tel:+494032506940" style="font-size:17px;color:rgba(251,246,236,.9);text-decoration:none" style-hover="color:#d98a5e">+49 40 32506940</a>
+              </div>
+              <div>
+                <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:6px">{{ t.contact.email }}</div>
+                <a href="mailto:primavera.altstadt@gmail.com" style="font-size:17px;color:rgba(251,246,236,.9);text-decoration:none" style-hover="color:#d98a5e">primavera.altstadt@gmail.com</a>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:12px">{{ t.contact.hours }}</div>
+              <div style="max-width:340px;display:flex;flex-direction:column;gap:1px">
+                <sc-for list="{{ hoursRows }}" as="r" hint-placeholder-count="7">
+                  <div style="{{ r.rowStyle }}">
+                    <span style="{{ r.dayStyle }}">{{ r.day }}</span>
+                    <span style="{{ r.slotsStyle }}">
+                      <sc-for list="{{ r.slots }}" as="s" hint-placeholder-count="2">
+                        <span style="{{ s.style }}">{{ s.txt }}</span>
+                      </sc-for>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;margin-top:14px;max-width:340px;background:rgba(217,138,94,.12);border:1px solid rgba(217,138,94,.3);border-radius:8px;padding:11px 14px">
+                <span style="font-size:16px;flex:none">☕</span>
+                <span style="font-size:13px;line-height:1.5;color:rgba(251,246,236,.85)">{{ t.contact.pause }}</span>
+              </div>
+              <div style="font-size:13px;color:rgba(251,246,236,.55);margin-top:12px">{{ t.contact.kitchen }}</div>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;min-height:380px;border-radius:8px;overflow:hidden;background:linear-gradient(150deg,#33291c,#1a120b)">
+          <sc-if value="{{ mapConsent }}">
+            <iframe src="https://www.google.com/maps?q=Hopfensack+18,+20457+Hamburg&output=embed" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Primavera Restaurant Hamburg – Hopfensack 18"></iframe>
+          </sc-if>
+          <sc-if value="{{ mapNoConsent }}">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(251,246,236,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(251,246,236,.05) 1px,transparent 1px);background-size:40px 40px"></div>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px">
+              <span style="width:46px;height:46px;border-radius:50% 50% 50% 0;background:#B25A30;transform:rotate(-45deg);box-shadow:0 8px 20px rgba(0,0,0,.4)"></span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#FBF6EC">Hopfensack 18, Altstadt</span>
+              <button onClick="{{ loadMap }}" style="background:rgba(251,246,236,.1);border:1px solid rgba(251,246,236,.35);color:#FBF6EC;border-radius:30px;padding:12px 24px;font-size:13px;cursor:pointer" style-hover="background:rgba(251,246,236,.2)">{{ t.contact.mapBtn }}</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ mapNoConsent }}">
+            <span style="position:absolute;left:30px;right:30px;bottom:16px;text-align:center;font-size:11px;color:rgba(251,246,236,.45);line-height:1.5">{{ t.contact.mapNote }}</span>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ============ IMPRESSUM ============ -->
+  <sc-if value="{{ isImpressum }}">
+    <section style="background:#F4EBDD;padding:130px 24px 90px;min-height:100vh">
+      <div style="max-width:780px;margin:0 auto">
+        <button onClick="{{ goTop }}" style="background:none;border:none;color:#B25A30;font-size:13px;cursor:pointer;margin-bottom:26px;letter-spacing:.4px">← {{ t.legal.back }}</button>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,5vw,56px);color:#2A2018;margin-bottom:10px">{{ t.impressum.title }}</h1>
+        <p style="font-size:13px;color:#8a7c6c;margin-bottom:46px">{{ t.impressum.sub }}</p>
+        <sc-for list="{{ impressumSections }}" as="sec" hint-placeholder-count="5">
+          <div style="margin-bottom:34px">
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#2A2018;margin-bottom:12px">{{ sec.h }}</h2>
+            <sc-for list="{{ sec.ps }}" as="p" hint-placeholder-count="2">
+              <p style="font-size:15px;line-height:1.8;color:#57493B;margin-bottom:8px;white-space:pre-line">{{ p }}</p>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ DATENSCHUTZ ============ -->
+  <sc-if value="{{ isDatenschutz }}">
+    <section style="background:#F4EBDD;padding:130px 24px 90px;min-height:100vh">
+      <div style="max-width:780px;margin:0 auto">
+        <button onClick="{{ goTop }}" style="background:none;border:none;color:#B25A30;font-size:13px;cursor:pointer;margin-bottom:26px;letter-spacing:.4px">← {{ t.legal.back }}</button>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,5vw,56px);color:#2A2018;margin-bottom:10px">{{ t.datenschutz.title }}</h1>
+        <p style="font-size:13px;color:#8a7c6c;margin-bottom:46px">{{ t.datenschutz.sub }}</p>
+        <sc-for list="{{ datenschutzSections }}" as="sec" hint-placeholder-count="8">
+          <div style="margin-bottom:34px">
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#2A2018;margin-bottom:12px">{{ sec.h }}</h2>
+            <sc-for list="{{ sec.ps }}" as="p" hint-placeholder-count="2">
+              <p style="font-size:15px;line-height:1.8;color:#57493B;margin-bottom:8px;white-space:pre-line">{{ p }}</p>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#1a120b;color:rgba(251,246,236,.65);padding:64px 24px 36px">
+    <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px" data-grid="footer">
+      <div>
+        <img src="images/logo-real.png" alt="Primavera · Pizza Pasta Salate" style="height:78px;width:auto;display:block;margin-bottom:18px">
+
+        <p style="font-size:14px;line-height:1.7;max-width:300px">{{ t.footer.tagline }}</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:14px;display:flex;align-items:center;gap:10px">{{ t.footer.visit }}<a href="https://www.instagram.com/primaverahamburg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="display:inline-flex;color:rgba(251,246,236,.65);text-transform:none;letter-spacing:0" style-hover="color:#FBF6EC"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle></svg></a></div>
+        <div style="font-size:14px;line-height:1.9">Hopfensack 18<br>20457 Hamburg<br><a href="tel:+494032506940" style="color:inherit;text-decoration:none">+49 40 32506940</a><br><a href="mailto:primavera.altstadt@gmail.com" style="color:inherit;text-decoration:none">primavera.altstadt@gmail.com</a></div>
+        <div style="font-size:13px;line-height:1.8;margin-top:12px;color:rgba(251,246,236,.5)">Mo–Fr 11:30–15 &amp; 17–22<br>Sa 16–23 · So 17–22</div>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:14px">{{ t.footer.legal }}</div>
+        <div style="display:flex;flex-direction:column;gap:9px;align-items:flex-start">
+          <button onClick="{{ goImpressum }}" style="background:none;border:none;color:rgba(251,246,236,.65);font-size:14px;cursor:pointer;padding:0" style-hover="color:#FBF6EC">{{ t.footer.impressum }}</button>
+          <button onClick="{{ goDatenschutz }}" style="background:none;border:none;color:rgba(251,246,236,.65);font-size:14px;cursor:pointer;padding:0" style-hover="color:#FBF6EC">{{ t.footer.datenschutz }}</button>
+          <button onClick="{{ openCookieSettings }}" style="background:none;border:none;color:rgba(251,246,236,.65);font-size:14px;cursor:pointer;padding:0" style-hover="color:#FBF6EC">{{ t.footer.cookies }}</button>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1140px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(251,246,236,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(251,246,236,.45)">
+      <span>© {{ year }} Ristorante Primavera · {{ t.footer.rights }}</span>
+      <span>{{ t.footer.made }}</span>
+    </div>
+  </footer>
+
+  <!-- ============ COOKIE BANNER ============ -->
+  <sc-if value="{{ showCookie }}">
+    <div style="position:fixed;inset:0;z-index:120;background:rgba(26,18,11,.55);display:flex;align-items:flex-end;justify-content:center;padding:0;animation:fadein .3s ease" data-cookie="wrap">
+      <div style="background:#FBF6EC;width:100%;max-width:680px;border-radius:12px 12px 0 0;padding:30px;box-shadow:0 -20px 60px rgba(0,0,0,.3);margin:0 16px;animation:floatup .4s ease both" data-cookie="panel">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#2A2018;margin-bottom:10px">{{ t.cookie.title }}</h3>
+        <p style="font-size:14px;line-height:1.7;color:#57493B;margin-bottom:18px">{{ t.cookie.text }}</p>
+
+        <sc-if value="{{ cookieSettingsOpen }}">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;padding:18px;background:#F4EBDD;border-radius:8px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div><div style="font-weight:600;font-size:14px;color:#2A2018">{{ t.cookie.necTitle }}</div><div style="font-size:12.5px;color:#57493B;margin-top:2px">{{ t.cookie.necDesc }}</div></div>
+              <span style="font-size:12px;color:#5C6638;font-weight:600;white-space:nowrap;padding-top:2px">{{ t.cookie.always }}</span>
+            </div>
+            <div style="height:1px;background:rgba(42,32,24,.1)"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div><div style="font-weight:600;font-size:14px;color:#2A2018">{{ t.cookie.statTitle }}</div><div style="font-size:12.5px;color:#57493B;margin-top:2px">{{ t.cookie.statDesc }}</div></div>
+              <button onClick="{{ toggleStats }}" role="switch" aria-checked="{{ statsOn }}" style="{{ statsToggleStyle }}"><span style="{{ statsKnobStyle }}"></span></button>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <button onClick="{{ acceptAll }}" style="flex:1;min-width:160px;background:#B25A30;color:#FBF6EC;border:none;border-radius:6px;padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#9c4a26">{{ t.cookie.all }}</button>
+          <button onClick="{{ acceptNecessary }}" style="flex:1;min-width:160px;background:#FBF6EC;color:#2A2018;border:1px solid rgba(42,32,24,.25);border-radius:6px;padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer" style-hover="border-color:#2A2018">{{ t.cookie.necessary }}</button>
+          <sc-if value="{{ cookieSettingsClosed }}">
+            <button onClick="{{ openCookieSettings }}" style="flex:1;min-width:130px;background:none;color:#57493B;border:1px solid rgba(42,32,24,.18);border-radius:6px;padding:14px 18px;font-size:14px;cursor:pointer" style-hover="color:#2A2018">{{ t.cookie.settings }}</button>
+          </sc-if>
+          <sc-if value="{{ cookieSettingsOpen }}">
+            <button onClick="{{ saveCookieSettings }}" style="flex:1;min-width:130px;background:#5C6638;color:#FBF6EC;border:none;border-radius:6px;padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#4a5530">{{ t.cookie.save }}</button>
+          </sc-if>
+        </div>
+        <div style="display:flex;gap:18px;margin-top:14px">
+          <button onClick="{{ goDatenschutz }}" style="background:none;border:none;color:#8a7c6c;font-size:12px;cursor:pointer;text-decoration:underline;padding:0">{{ t.footer.datenschutz }}</button>
+          <button onClick="{{ goImpressum }}" style="background:none;border:none;color:#8a7c6c;font-size:12px;cursor:pointer;text-decoration:underline;padding:0">{{ t.footer.impressum }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <sc-if value="{{ lightboxOpen }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:130;background:rgba(20,14,8,.92);display:flex;align-items:center;justify-content:center;padding:32px;animation:fadein .25s ease;cursor:zoom-out">
+      <div style="{{ lightboxImgStyle }}"></div>
+      <span style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:#FBF6EC;text-shadow:0 2px 14px rgba(0,0,0,.75)">{{ lightboxCaption }}</span>
+      <button onClick="{{ closeLightbox }}" style="position:absolute;top:26px;right:30px;background:none;border:none;color:#FBF6EC;font-size:38px;cursor:pointer;line-height:1">×</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = {
+    lang: 'de',
+    view: 'home',
+    scrolled: false,
+    mobileNav: false,
+    consent: null,
+    cookieSettingsOpen: false,
+    statsOn: false,
+    mapConsent: false,
+    activeMenuCat: 'pizza',
+    res: { name:'', phone:'', email:'', date:'', time:'', guests:'2', occasion:'', message:'' },
+    resErrors: {},
+    resDone: false,
+    cat: { name:'', email:'', phone:'', etype:'', date:'', guests:'', message:'' },
+    catErrors: {},
+    catDone: false,
+    lightbox: null,
+  };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    try {
+      const c = localStorage.getItem('primavera_consent');
+      if (c) this.setState({ consent: c, statsOn: c === 'all', mapConsent: c === 'all' });
+    } catch (e) {}
+
+    const path = window.location.pathname;
+    if (path === '/impressum') this.setState({ view: 'impressum' });
+    else if (path === '/datenschutz') this.setState({ view: 'datenschutz' });
+    else this.setState({ view: 'home' });
+
+    this._onPopState = () => {
+      const p = window.location.pathname;
+      if (p === '/impressum') this.setState({ view: 'impressum' });
+      else if (p === '/datenschutz') this.setState({ view: 'datenschutz' });
+      else this.setState({ view: 'home' });
+    };
+    window.addEventListener('popstate', this._onPopState);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('popstate', this._onPopState);
+  }
+
+  T = {
+    de: {
+      nav:{about:'Über uns',menu:'Speisekarte',catering:'Catering',gallery:'Galerie',contact:'Kontakt'},
+      cta:{reserve:'Tisch reservieren',menu:'Speisekarte ansehen',catering:'Catering anfragen'},
+      video:{sub:'Sommerabende auf unserer Terrasse'},
+      hero:{eyebrow:'Trattoria · Hamburg Altstadt',title:'Authentische italienische Küche im Herzen Hamburgs',subtitle:'Pizza aus dem Holzofen, hausgemachte Pasta und ein Glas Wein wie in Italien – seit 2009 in der Hamburger Altstadt.',scroll:'Scrollen'},
+      about:{eyebrow:'Über uns',title:'Eine Familie, eine Leidenschaft',p1:'Primavera begann als kleiner Familientraum: echte italienische Gastfreundschaft nach Hamburg zu bringen. Was als Rezept der Nonna anfing, ist heute ein fester Treffpunkt in der Altstadt.',p2:'Wir kochen mit frischen, saisonalen Zutaten – San-Marzano-Tomaten, Büffelmozzarella aus Kampanien und Olivenöl aus Apulien. Unsere Pizza reift 48 Stunden und kommt aus dem Holzofen.',s1:'Seit',s2:'Hausgemacht',s3:'Holzofen',photo:'Im Herzen der Altstadt'},
+      menu:{eyebrow:'Buon Appetito',title:'Unsere Speisekarte',subtitle:'Frisch zubereitet mit hausgemachten Saucen und unserem speziellen Pizzateig. Vegetarische Gerichte und große Salate auch als Hauptgericht.',note:'Alle Preise in Euro inkl. MwSt. Allergene und Zusatzstoffe teilen wir Ihnen gerne mit. Vegetarische und vegane Optionen verfügbar.'},
+      menuCats:{antipasti:'Antipasti',salate:'Insalata',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Birra',hauswein:'Hauswein',vini:'Vini',spritz:'Spritz & Cocktails',caffe:'Caffè'},
+      catering:{eyebrow:'Catering Hamburg',title:'Italienisch genießen – an Ihrem Ort',subtitle:'Ob Firmenfeier, Hochzeit oder privates Fest: Wir bringen unsere Küche zu Ihnen. Vom Antipasti-Buffet bis zum Vollservice mit Personal.',s1:'Firmenfeier',s2:'Geburtstag',s3:'Hochzeit',s4:'Private Veranstaltung',services:[{t:'Firmenfeiern',d:'Buffets & Fingerfood fürs Büro und Events.'},{t:'Geburtstage',d:'Persönliche Menüs für jeden Anlass.'},{t:'Hochzeiten',d:'Vom Aperitivo bis zum Dolce-Buffet.'},{t:'Private Feiern',d:'Familienfeste & Dinner zu Hause.'}],formTitle:'Catering anfragen',formSub:'Erzählen Sie uns von Ihrer Veranstaltung – wir melden uns mit einem Angebot.',submit:'Anfrage senden',successTitle:'Grazie mille!',successText:'Ihre Catering-Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot.',contactTitle:'Sprechen wir darüber',contactText:'Erzählen Sie uns von Ihrer Feier – am schnellsten telefonisch. Wir stellen Ihr Menü persönlich zusammen.',orMail:'Oder schreiben Sie uns:'},
+      reserve:{eyebrow:'Reservierung',title:'Einfach anrufen',subtitle:'Am liebsten ganz persönlich: Rufen Sie uns an – wir sagen Ihnen sofort, ob ein Tisch frei ist, auch für heute Abend.',hours:'Mo–Fr 11:30–15 & 17–22 Uhr · Sa 16–23 Uhr · So 17–22 Uhr',callCta:'Jetzt anrufen',orForm:'Oder kurz online anfragen',formHint:'Hinterlassen Sie Ihre Daten – wir rufen zur Bestätigung kurz zurück.',submit:'Anfrage senden',privacy:'Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer Datenschutzerklärung zu.',successTitle:'Grazie!',again:'Weitere Anfrage',successPrefix:'Vielen Dank',note:'Für größere Gruppen, Geburtstage oder Feiern rufen Sie uns einfach an – wir finden den passenden Tisch für Sie.'},
+      fields:{name:'Name',phone:'Telefonnummer',email:'E-Mail',date:'Datum',time:'Uhrzeit',guests:'Anzahl Personen',occasion:'Anlass (optional)',message:'Nachricht',eventType:'Art der Veranstaltung'},
+      gallery:{eyebrow:'Galerie',title:'Atmosphäre & Geschmack',note:'Echte Eindrücke aus unserem Ristorante.',items:['Pizza aus dem Holzofen','Pizza Napoli','Tartufo Eisdessert','Spaghetti Scampi','Sommerabende auf der Terrasse','Unser Gastraum']},
+      reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.'},
+      contact:{eyebrow:'Kontakt',title:'Besuchen Sie uns',addr:'Adresse',phone:'Telefon',email:'E-Mail',hours:'Öffnungszeiten',daysAll:'Mo – So',kitchen:'Warme Küche bis 21:30 Uhr · Sa bis 22:30 Uhr',pause:'Mittagspause täglich von 15:00 bis 17:00 Uhr (Mo–Fr)',mapBtn:'Google Maps laden',mapNote:'Beim Laden werden Daten an Google übertragen. Siehe Datenschutzerklärung.',mapLoaded:'Karte geladen – Hopfensack 18, 20457 Hamburg'},
+      footer:{tagline:'Authentische italienische Küche im Herzen der Hamburger Altstadt. Benvenuti.',visit:'Besuch',legal:'Rechtliches',impressum:'Impressum',datenschutz:'Datenschutzerklärung',cookies:'Cookie-Einstellungen',rights:'Alle Rechte vorbehalten.',made:'Buon appetito · Hamburg'},
+      cookie:{title:'Wir respektieren Ihre Privatsphäre',text:'Wir verwenden Cookies, um unsere Website bereitzustellen und – mit Ihrer Einwilligung – die Nutzung zu analysieren. Analyse- und Karten-Dienste werden erst nach Ihrer Zustimmung geladen.',all:'Alle akzeptieren',necessary:'Nur notwendige',settings:'Einstellungen',save:'Auswahl speichern',necTitle:'Notwendige Cookies',necDesc:'Erforderlich für den Betrieb der Website. Immer aktiv.',statTitle:'Statistik & Analyse',statDesc:'Google Analytics 4 mit Consent Mode. Hilft uns, die Website zu verbessern.',always:'Immer aktiv'},
+      legal:{back:'Zurück zur Startseite'},
+      impressum:{title:'Impressum',sub:'Angaben gemäß § 5 TMG'},
+      datenschutz:{title:'Datenschutzerklärung',sub:'Gemäß DSGVO und TTDSG · Stand 2026'},
+    },
+    en: {
+      nav:{about:'About',menu:'Menu',catering:'Catering',gallery:'Gallery',contact:'Contact'},
+      cta:{reserve:'Reserve a table',menu:'View the menu',catering:'Request catering'},
+      video:{sub:'Summer evenings on our terrace'},
+      hero:{eyebrow:'Trattoria · Hamburg Old Town',title:'Authentic Italian cuisine in the heart of Hamburg',subtitle:'Wood-fired pizza, handmade pasta and a glass of wine just like in Italy – in Hamburg’s Old Town since 2009.',scroll:'Scroll'},
+      about:{eyebrow:'About us',title:'One family, one passion',p1:'Primavera began as a small family dream: to bring genuine Italian hospitality to Hamburg. What started as Nonna’s recipe is today a beloved meeting point in the Old Town.',p2:'We cook with fresh, seasonal ingredients – San Marzano tomatoes, buffalo mozzarella from Campania and olive oil from Puglia. Our pizza dough proofs for 48 hours and comes from the wood-fired oven.',s1:'Since',s2:'Homemade',s3:'Wood oven',photo:'In the heart of the Old Town'},
+      menu:{eyebrow:'Buon Appetito',title:'Our menu',subtitle:'Freshly prepared with homemade sauces and our special pizza dough. Vegetarian dishes and large salads also as a main course.',note:'All prices in euros incl. VAT. We are happy to share allergen information. Vegetarian and vegan options available.'},
+      menuCats:{antipasti:'Antipasti',salate:'Salads',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Beer',hauswein:'House wine',vini:'Wines',spritz:'Spritz & Cocktails',caffe:'Coffee'},
+      catering:{eyebrow:'Catering Hamburg',title:'Enjoy Italian – at your place',subtitle:'Company party, wedding or private celebration: we bring our kitchen to you. From an antipasti buffet to full service with staff.',s1:'Company party',s2:'Birthday',s3:'Wedding',s4:'Private event',services:[{t:'Company parties',d:'Buffets & finger food for office & events.'},{t:'Birthdays',d:'Personal menus for any occasion.'},{t:'Weddings',d:'From the aperitivo to the dolci buffet.'},{t:'Private events',d:'Family celebrations & dinners at home.'}],formTitle:'Request catering',formSub:'Tell us about your event – we’ll get back with a quote.',submit:'Send request',successTitle:'Grazie mille!',successText:'Your catering request has been received. We’ll get back to you within 24 hours with a personal quote.',contactTitle:'Let’s talk it through',contactText:'Tell us about your event – fastest by phone. We’ll put together your menu personally.',orMail:'Or drop us a line:'},
+      reserve:{eyebrow:'Reservation',title:'Just give us a call',subtitle:'We love the personal touch: call us and we’ll tell you right away if a table is free – even for tonight.',hours:'Mon–Fri 11:30–15 & 17–22 · Sat 16–23 · Sun 17–22',callCta:'Call us now',orForm:'Or send a quick request',formHint:'Leave your details and we’ll call you back to confirm.',submit:'Send request',privacy:'By submitting you agree to the processing of your data per our privacy policy.',successTitle:'Grazie!',again:'New request',successPrefix:'Thank you',note:'For larger groups, birthdays or celebrations just give us a call – we’ll find the right table for you.'},
+      fields:{name:'Name',phone:'Phone number',email:'E-mail',date:'Date',time:'Time',guests:'Guests',occasion:'Occasion (optional)',message:'Message',eventType:'Type of event'},
+      gallery:{eyebrow:'Gallery',title:'Atmosphere & taste',note:'Real impressions from our ristorante.',items:['Wood-fired pizza','Pizza Napoli','Tartufo ice dessert','Spaghetti Scampi','Summer evenings on the terrace','Our dining room']},
+      reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.'},
+      contact:{eyebrow:'Contact',title:'Visit us',addr:'Address',phone:'Phone',email:'E-mail',hours:'Opening hours',daysAll:'Mon – Sun',kitchen:'Hot kitchen until 21:30 · Sat until 22:30',pause:'Lunch break daily 15:00–17:00 (Mon–Fri)',mapBtn:'Load Google Maps',mapNote:'Loading transfers data to Google. See privacy policy.',mapLoaded:'Map loaded – Hopfensack 18, 20457 Hamburg'},
+      footer:{tagline:'Authentic Italian cuisine in the heart of Hamburg’s Old Town. Benvenuti.',visit:'Visit',legal:'Legal',impressum:'Imprint',datenschutz:'Privacy policy',cookies:'Cookie settings',rights:'All rights reserved.',made:'Buon appetito · Hamburg'},
+      cookie:{title:'We respect your privacy',text:'We use cookies to provide our website and – with your consent – to analyse usage. Analytics and map services load only after your consent.',all:'Accept all',necessary:'Necessary only',settings:'Settings',save:'Save selection',necTitle:'Necessary cookies',necDesc:'Required for the website to function. Always active.',statTitle:'Statistics & analytics',statDesc:'Google Analytics 4 with Consent Mode. Helps us improve the site.',always:'Always on'},
+      legal:{back:'Back to home'},
+      impressum:{title:'Imprint',sub:'Information pursuant to § 5 TMG'},
+      datenschutz:{title:'Privacy policy',sub:'Per GDPR and TTDSG · 2026'},
+    }
+  };
+
+  MENU = {
+    antipasti:[
+      {name:'Bruscheta',d:{de:'Tomaten, Kapern, Basilikum, Pesto mit Balsamicocreme · 3 Stk.',en:'Tomato, capers, basil, pesto with balsamic cream · 3 pcs'},price:'6,90'},
+      {name:'Mozzarella Caprese',d:{de:'Mozzarella, Tomaten, Basilikum, Olivenöl, Balsamicocreme',en:'Mozzarella, tomato, basil, olive oil, balsamic cream'},price:'9,80'},
+      {name:'Carpacio di Manzo',d:{de:'Vom Rinderfilet, Rucola, ital. Hartkäse, Olivenöl, Balsamicocreme',en:'Beef fillet, rocket, Italian hard cheese, olive oil, balsamic cream'},price:'15,90'},
+      {name:'Antipasti della Casa',d:{de:'Gemischter Antipasti (Carpacio & Mozzarella, Bruscheta) · für 1 / für 2-3',en:'Mixed antipasti (carpacio & mozzarella, bruscheta) · for 1 / for 2-3'},price:'9,90 / 20,90'},
+    ],
+    salate:[
+      {name:'Insalata Mista',d:{de:'Gemischter Salat · klein / groß',en:'Mixed salad · small / large'},price:'6,90 / 10,90'},
+      {name:'Insalata Nizza',d:{de:'Gemischter Salat, Thunfisch, Ei, Hausdressing',en:'Mixed salad, tuna, egg, house dressing'},price:'14,90'},
+      {name:'Insalata di Pollo',d:{de:'Gemischter Salat, Hähnchenbruststreifen, Hausdressing',en:'Mixed salad, grilled chicken strips, house dressing'},price:'14,90'},
+    ],
+    pizza:[
+      {name:'Margherita',d:{de:'Tomatensauce, Mozzarella und Oregano',en:'Tomato sauce, mozzarella and oregano'},price:'11,90'},
+      {name:'Salami e Funghi',d:{de:'Salami und Champignons',en:'Salami and mushrooms'},price:'14,90'},
+      {name:'Prosciutto e Funghi',d:{de:'Schinken und Champignons',en:'Ham and mushrooms'},price:'14,90'},
+      {name:'Tonno e Cipola',d:{de:'Thunfisch und Zwiebeln',en:'Tuna and onions'},price:'14,90'},
+      {name:'Spinacci',d:{de:'Spinat und Fetakäse',en:'Spinach and feta'},price:'14,90'},
+      {name:'Diavola',d:{de:'Salami, Jalapeños',en:'Salami, jalapeños'},price:'14,90'},
+      {name:'Hawai',d:{de:'Schinken und Ananas',en:'Ham and pineapple'},price:'14,90'},
+      {name:'Vegetariana',d:{de:'Brokkoli, Spinat, Champignons, Paprika, Zucchini, Mais',en:'Broccoli, spinach, mushrooms, peppers, courgette, corn'},price:'14,90'},
+      {name:'Pollo e Funghi',d:{de:'Hähnchenbrust, Champignons',en:'Chicken breast, mushrooms'},price:'15,90'},
+      {name:'Napoli',d:{de:'Sardellen, Oliven, Kapern (salzig)',en:'Anchovies, olives, capers (salty)'},price:'16,90'},
+      {name:'Scampi',d:{de:'Garnelen, Cherrytomaten und Knoblauch',en:'Prawns, cherry tomatoes and garlic'},price:'17,90'},
+    ],
+    pasta:[
+      {name:'Spaghetti Napolitana',d:{de:'In hausgemachter Tomatensauce',en:'In homemade tomato sauce'},price:'10,90'},
+      {name:"Penne all'Arrabbiata",d:{de:'Knoblauch, scharfe Tomatensauce',en:'Garlic, spicy tomato sauce'},price:'12,90'},
+      {name:'Spaghetti Diavola',d:{de:'Oliven, Kapern, Pinienkerne in leicht scharfer Tomatensauce',en:'Olives, capers, pine nuts in lightly spicy tomato sauce'},price:'14,90'},
+      {name:'Penne Vegetaria',d:{de:'Brokkoli, Champignons, Paprika, Zucchini in Tomatensauce',en:'Broccoli, mushrooms, peppers, courgette in tomato sauce'},price:'14,50'},
+      {name:'Spaghetti al Pesto',d:{de:'Basilikum, Pinienkerne, Parmesan, Olivenöl, Knoblauch',en:'Basil, pine nuts, parmesan, olive oil, garlic'},price:'14,90'},
+      {name:'Spaghetti Bolognese',d:{de:'Rinderhack, Zwiebeln, Karotten, Sellerie in Tomatensauce',en:'Beef ragù, onions, carrots, celery in tomato sauce'},price:'14,90'},
+      {name:'Spaghetti alla Carbonara',d:{de:'Speck, Zwiebeln, Ei in Sahnesauce',en:'Bacon, onions, egg in cream sauce'},price:'14,90'},
+      {name:'Penne al Gorgonzola',d:{de:'Gorgonzolakäse, Paprika in Sahnesauce',en:'Gorgonzola, peppers in cream sauce'},price:'15,90'},
+      {name:'Penne Delizia',d:{de:'Hähnchenbrust und Champignons in Sahnesauce',en:'Chicken breast and mushrooms in cream sauce'},price:'14,90'},
+      {name:'Penne al Salmone',d:{de:'Lachs, Lauchzwiebel in Tomaten- und Sahnesauce',en:'Salmon, spring onion in tomato & cream sauce'},price:'17,90'},
+      {name:'Spaghetti Scampi',d:{de:'Garnelen, Knoblauch, Petersilie in leicht scharfer Tomatensauce',en:'Prawns, garlic, parsley in lightly spicy tomato sauce'},price:'18,90'},
+    ],
+    auflauf:[
+      {name:'Cannelloni Ricota Spinaci',d:{de:'Geff. Nudeln mit Ricotakäse, Spinat, in Béchamelsauce Käse überb.',en:'Pasta filled with ricotta cheese & spinach, baked with béchamel & cheese'},price:'14,90'},
+      {name:'Lasagne',d:{de:'Rinderhack in Tomaten- & Béchamelsauce und Käse überbacken',en:'Beef ragù in tomato & béchamel sauce, baked with cheese'},price:'16,90'},
+    ],
+    dolci:[
+      {name:'Tiramisù',d:{de:'Mascarpone, Espresso, Savoiardi',en:'Mascarpone, espresso, savoiardi'},price:'5,80'},
+      {name:'Tartufo',d:{de:'Eisdessert · Schoko · Vanille · Limoncello',en:'Ice dessert · chocolate · vanilla · limoncello'},price:'5,80'},
+    ],
+    nonalcohol:[
+      {name:'Mineralwasser',d:{de:'San Pellegrino, Acqua Panna · 0,25 / 0,75 l',en:'San Pellegrino, Acqua Panna · 0.25 / 0.75 l'},price:'3,50 / 6,50'},
+      {name:'Softies',d:{de:'Cola, Cola Zero, Fanta, Sprite, Spezi, \nIcetee (Fuzetee) · 0,3 / 0,5 l ',en:'Cola, Zero, Fanta, Sprite, Spezi, Icetea · 0.3 / 0.5 l'},price:'3,50 / 4,90'},
+      {name:'Säfte / Schorlen',d:{de:'Apfel, Orange, Kirsche, Banane, Kiba, Maracuja, Rhabarber, Johannisbeere · 0,3 / 0,5 l',en:'Apple, orange, cherry, banana, kiba, passionfruit, rhubarb, blackcurrant · 0.3 / 0.5 l'},price:'3,50 / 4,90'},
+      {name:'Schweppes',d:{de:'Bitter Lemon, GingerAle · 0,2 l',en:'Bitter Lemon, Ginger Ale · 0.2 l'},price:'3,70'},
+    ],
+    birra:[
+      {name:'Peroni',d:{de:'0,3 l',en:'0.3 l'},price:'4,40'},
+      {name:'Holsten',d:{de:'0,3 / 0,5 l',en:'0.3 / 0.5 l'},price:'3,70 / 4,80'},
+      {name:'Hefe Weizen',d:{de:'0,5 l',en:'0.5 l'},price:'4,90'},
+      {name:'Krombacher',d:{de:'0,3 / 0,5 l',en:'0.3 / 0.5 l'},price:'3,70 / 4,80'},
+      {name:'Radler / Alster',d:{de:'0,3 / 0,5 l',en:'0.3 / 0.5 l'},price:'3,70 / 4,80'},
+      {name:'Alkoholfrei Weiss',d:{de:'0,5 l',en:'0.5 l'},price:'4,90'},
+      {name:'Alkoholfrei Krombacher',d:{de:'0,3 l',en:'0.3 l'},price:'3,80'},
+      {name:'Alkoholfrei Peroni',d:{de:'0,3 l',en:'0.3 l'},price:'4,40'},
+    ],
+    hauswein:[
+      {name:'Bianco',d:{de:'Hauswein · 0,2 / 0,5 l',en:'House wine · 0.2 / 0.5 l'},price:'7 / 15'},
+      {name:'Rosso',d:{de:'Hauswein · 0,2 / 0,5 l',en:'House wine · 0.2 / 0.5 l'},price:'7 / 15'},
+      {name:'Rosé',d:{de:'Hauswein · 0,2 / 0,5 l',en:'House wine · 0.2 / 0.5 l'},price:'7 / 15'},
+      {name:'Lambrusco',d:{de:'Hauswein · 0,2 / 0,5 l',en:'House wine · 0.2 / 0.5 l'},price:'7 / 15'},
+      {name:'Weinschorle',d:{de:'',en:''},price:'6'},
+    ],
+    spritz:[
+      {name:'Aperol Spritz',d:{de:'',en:''},price:'8'},
+      {name:'Limoncello Spritz',d:{de:'',en:''},price:'8'},
+      {name:'Hugo',d:{de:'',en:''},price:'8'},
+      {name:'Sarti Spritz',d:{de:'',en:''},price:'8'},
+      {name:'Lillet Berry',d:{de:'',en:''},price:'8'},
+      {name:'Negroni',d:{de:'',en:''},price:'8'},
+    ],
+    caffe:[
+      {name:'Espresso',d:{de:'',en:''},price:'3'},
+      {name:'Espresso Doppio',d:{de:'',en:''},price:'4'},
+      {name:'Cappuccino',d:{de:'',en:''},price:'4'},
+    ],
+    vini:[
+      {name:'Lugana DOC · La Sogara',d:{de:'Bianco. Frisch, elegant und mineralisch · Glas / Flasche',en:'White. Fresh, elegant and mineral · glass / bottle'},price:'8 / 27'},
+      {name:'Pinot Grigio · La Trigi',d:{de:'Bianco. Frisch und lebendig mit feiner Säure · Glas / Flasche',en:'White. Fresh and lively with fine acidity · glass / bottle'},price:'7 / 24'},
+      {name:'Primitivo · Il Passo',d:{de:'Rosso, halbtrocken, Apulien. Fruchtig und weich · Glas / Flasche',en:'Red, semi-dry, Puglia. Fruity and soft · glass / bottle'},price:'8 / 27'},
+      {name:"Montepulciano d'Abruzzo",d:{de:'Rosso, trocken, Abruzzen Riserva. Vollmundig mit reifen Kirschen · Glas / Flasche',en:'Red, dry, Abruzzo Riserva. Full-bodied with ripe cherries · glass / bottle'},price:'7 / 24'},
+    ],
+  };
+
+  CAT_KEYS = ['antipasti','salate','pizza','pasta','auflauf','dolci','nonalcohol','birra','hauswein','vini','spritz','caffe'];
+
+  GALLERY = [
+    {id:'gal-spaghetti', src:'images/spaghetti-macro-web.jpg', cap:{de:'Spaghetti Scampi', en:'Spaghetti Scampi'}},
+    {id:'gal-pizza-napoli', src:'images/pizza-macro-web.jpg', cap:{de:'Pizza Napoli', en:'Pizza Napoli'}},
+    {id:'gal-insalata', src:'images/insalata-web.jpg', cap:{de:'Insalata Nizza', en:'Insalata Nizza'}},
+    {id:'gal-penne', src:'images/penne-web.jpg', cap:{de:'Penne in Sahnesauce', en:'Penne in cream sauce'}},
+    {id:'gal-lasagne', src:'images/auflauf-web.jpg', cap:{de:'Lasagne al Forno', en:'Lasagne al forno'}},
+    {id:'gal-pizza-table', src:'images/pizza-table-web.jpg', cap:{de:'Pizza aus dem Holzofen', en:'Wood-fired pizza'}},
+    {id:'gal-tartufo', src:'images/dolce-web.jpg', cap:{de:'Tartufo', en:'Tartufo'}},
+    {id:'gal-aperitivo', src:'images/spritz-web.jpg', cap:{de:'Aperitivo della Casa', en:'House aperitivo'}},
+    {id:'gal-penne-delizia', src:'images/penne-interior-web.jpg', cap:{de:'Penne Delizia', en:'Penne Delizia'}},
+  ];
+
+  HOURS = [
+    {k:'mo', lunch:'11:30 – 15:00', dinner:'17:00 – 22:00'},
+    {k:'di', lunch:'11:30 – 15:00', dinner:'17:00 – 22:00'},
+    {k:'mi', lunch:'11:30 – 15:00', dinner:'17:00 – 22:00'},
+    {k:'do', lunch:'11:30 – 15:00', dinner:'17:00 – 22:00'},
+    {k:'fr', lunch:'11:30 – 15:00', dinner:'17:00 – 22:00'},
+    {k:'sa', lunch:null, dinner:'16:00 – 23:00'},
+    {k:'so', lunch:null, dinner:'17:00 – 22:00'},
+  ];
+  DAYIDX = {so:0, mo:1, di:2, mi:3, do:4, fr:5, sa:6};
+
+  TESTI = [
+    {de:'Das Restaurant ist familiär, das Essen sehr lecker und der Service freundlich und schnell. Auf jeden Fall einen Besuch wert!', en:'The place feels homely, the food very tasty and the service friendly and fast. Definitely worth a visit!', n:'Gast · Tripadvisor'},
+    {de:'Super gute Pastagerichte. Herzliche Bedienung und eine gemütliche Atmosphäre machten den Abend zu einem Highlight. Empfehlenswert!', en:'Super good pasta dishes. Warm service and a cosy atmosphere made the evening a highlight. Recommended!', n:'Gast · Tripadvisor'},
+    {de:'Großartiger, freundlicher Service. Fantastisches Essen. Authentisch italienisch – sehr zu empfehlen. Perfetto!', en:'Great friendly service. Fantastic food. Authentic Italian. Highly recommended. Perfetto!', n:'Gast · Tripadvisor'},
+  ];
+
+  impressum(t) {
+    const de = t.lang==='de';
+    return [
+      {h:de?'Angaben gemäß § 5 DDG':'Information per § 5 DDG', ps:['Primavera Bistro\nHopfensack 18\n20457 Hamburg\nDeutschland']},
+      {h:de?'Kontakt':'Contact', ps:['Telefon: +49 40 32506940\nE-Mail: primavera.altstadt@gmail.com']},
+      {h:de?'Vertreten durch':'Represented by', ps:['Hamza Karateke']},
+      {h:de?'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV':'Responsible for content (§ 18 (2) MStV)', ps:['Hamza Karateke\nHopfensack 18\n20457 Hamburg\nDeutschland']},
+      {h:de?'Haftung für Inhalte':'Liability for content', ps:[de?'Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.':'The content of our pages was created with great care. However, we cannot guarantee the accuracy, completeness or timeliness of the content.']},
+      {h:de?'Haftung für Links':'Liability for links', ps:[de?'Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.':'Our website contains links to external third-party websites over whose content we have no influence. Therefore we cannot accept any liability for this external content.']},
+      {h:de?'Urheberrecht':'Copyright', ps:[de?'Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.':'The content and works created by the site operators on these pages are subject to German copyright law.']},
+    ];
+  }
+
+  datenschutz(t) {
+    const de = t.lang==='de';
+    return [
+      {h:de?'Allgemeine Hinweise':'General information', ps:[de?'Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften (DSGVO).':'The protection of your personal data is important to us. We treat your personal data confidentially and in accordance with statutory data protection regulations (GDPR).']},
+      {h:de?'Verantwortlicher':'Controller', ps:[de?'Primavera Bistro\nHopfensack 18\n20457 Hamburg\nDeutschland\nE-Mail: primavera.altstadt@gmail.com\nVerantwortlich: Hamza Karateke':'Primavera Bistro\nHopfensack 18\n20457 Hamburg\nGermany\nEmail: primavera.altstadt@gmail.com\nResponsible: Hamza Karateke']},
+      {h:de?'Erhebung und Speicherung personenbezogener Daten':'Collection and storage of personal data', ps:[de?'Beim Besuch unserer Website werden automatisch Informationen durch den Server erfasst (z. B. IP-Adresse, Browsertyp, Datum und Uhrzeit).':'When you visit our website, information is automatically collected by the server (e.g. IP address, browser type, date and time).']},
+      {h:de?'Kontaktaufnahme':'Contacting us', ps:[de?'Wenn Sie uns per E-Mail oder Telefon kontaktieren, werden Ihre Angaben zur Bearbeitung Ihrer Anfrage gespeichert.':'If you contact us by email or phone, your details will be stored in order to process your request.']},
+      {h:'Instagram', ps:[de?'Wir betreiben eine Präsenz auf Instagram. Anbieter ist Meta Platforms Ireland Ltd. Beim Besuch unserer Instagram-Seite können personenbezogene Daten durch Meta verarbeitet werden.':'We maintain a presence on Instagram. The provider is Meta Platforms Ireland Ltd. When you visit our Instagram page, personal data may be processed by Meta.']},
+      {h:'Cookies', ps:[de?'Unsere Website kann Cookies verwenden. Diese dienen dazu, unser Angebot nutzerfreundlicher zu gestalten.':'Our website may use cookies. These serve to make our offering more user-friendly.']},
+      {h:de?'Ihre Rechte':'Your rights', ps:[de?'Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten.':'You have the right to access, rectify, erase and restrict the processing of your data.']},
+      {h:de?'Kontakt Datenschutz':'Privacy contact', ps:[de?'Bei Fragen können Sie uns jederzeit unter primavera.altstadt@gmail.com kontaktieren.':'If you have any questions, you can contact us at any time at primavera.altstadt@gmail.com.']},
+    ];
+  }
+
+  setLang = (l) => this.setState({ lang: l });
+  toggleNav = () => this.setState(s => ({ mobileNav: !s.mobileNav }));
+
+  scrollTo = (id) => {
+    this.setState({ mobileNav: false });
+    const go = () => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+    };
+    if (this.state.view !== 'home') { window.history.pushState(null, '', '/'); this.setState({ view: 'home' }, () => requestAnimationFrame(go)); }
+    else go();
+  };
+  goTop = () => { window.history.pushState(null, '', '/'); this.setState({ view: 'home', mobileNav: false }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  goImpressum = () => { window.history.pushState(null, '', '/impressum'); this.setState({ view: 'impressum', mobileNav: false, consent: this.state.consent }); window.scrollTo({ top: 0 }); };
+  goDatenschutz = () => { window.history.pushState(null, '', '/datenschutz'); this.setState({ view: 'datenschutz', mobileNav: false }); window.scrollTo({ top: 0 }); };
+
+  acceptAll = () => { try{localStorage.setItem('primavera_consent','all');}catch(e){} this.setState({ consent:'all', statsOn:true, mapConsent:true, cookieSettingsOpen:false }); };
+  acceptNecessary = () => { try{localStorage.setItem('primavera_consent','necessary');}catch(e){} this.setState({ consent:'necessary', statsOn:false, cookieSettingsOpen:false }); };
+  saveCookieSettings = () => { const c = this.state.statsOn ? 'all' : 'necessary'; try{localStorage.setItem('primavera_consent',c);}catch(e){} this.setState({ consent:c, mapConsent:this.state.statsOn, cookieSettingsOpen:false }); };
+  openCookieSettings = () => this.setState({ consent:null, cookieSettingsOpen:true });
+  toggleStats = () => this.setState(s => ({ statsOn: !s.statsOn }));
+  loadMap = () => this.setState({ mapConsent:true });
+
+  setMenuCat = (k) => this.setState({ activeMenuCat:k });
+
+  updateRes = (e) => { const n=e.target.name, v=e.target.value; this.setState(s=>({res:{...s.res,[n]:v}, resErrors:{...s.resErrors,[n]:undefined}})); };
+  updateCat = (e) => { const n=e.target.name, v=e.target.value; this.setState(s=>({cat:{...s.cat,[n]:v}, catErrors:{...s.catErrors,[n]:undefined}})); };
+
+  submitRes = (e) => {
+    e.preventDefault();
+    const t = this.T[this.state.lang], de = this.state.lang==='de', r = this.state.res, err = {};
+    const req = de?'Pflichtfeld':'Required';
+    if(!r.name.trim()) err.name = req;
+    if(!r.phone.trim()) err.phone = req;
+    if(!r.date) err.date = req;
+    if(!r.time) err.time = req;
+    if(Object.keys(err).length){ this.setState({resErrors:err}); return; }
+    this.setState({ resDone:true, resErrors:{} });
+  };
+  resetRes = () => this.setState({ resDone:false, res:{name:'',phone:'',email:'',date:'',time:'',guests:'2',occasion:'',message:''} });
+
+  submitCat = (e) => {
+    e.preventDefault();
+    const de = this.state.lang==='de', c = this.state.cat, err = {};
+    const req = de?'Pflichtfeld':'Required';
+    if(!c.name.trim()) err.name = req;
+    if(!c.email.trim()) err.email = req; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c.email)) err.email = de?'Ungültige E-Mail':'Invalid email';
+    if(Object.keys(err).length){ this.setState({catErrors:err}); return; }
+    this.setState({ catDone:true, catErrors:{} });
+  };
+
+  openLightbox = (i) => this.setState({ lightbox:i });
+  closeLightbox = () => this.setState({ lightbox:null });
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = { ...this.T[lang], lang };
+    const ink = '#FBF6EC';
+    const headerSolid = this.state.scrolled || this.state.view !== 'home';
+    const headerInk = '#FBF6EC';
+
+    const inputStyle = 'width:100%;margin-top:6px;padding:12px 13px;border:1px solid rgba(42,32,24,.2);border-radius:6px;background:#fff;font-size:14.5px;color:#2A2018;outline:none';
+    const errInput = 'width:100%;margin-top:6px;padding:12px 13px;border:1.5px solid #c0392b;border-radius:6px;background:#fff;font-size:14.5px;color:#2A2018;outline:none';
+    const labelStyle = 'font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#57493B;font-weight:500';
+    const textareaStyle = inputStyle + ';resize:vertical;font-family:inherit';
+    const errStyle = 'display:block;font-size:11.5px;color:#c0392b;margin-top:4px';
+
+    const re = this.state.resErrors, ce = this.state.catErrors;
+
+    const tabBase = 'border:none;border-radius:30px;padding:9px 20px;font-size:13px;letter-spacing:.4px;cursor:pointer;transition:all .2s';
+    const menuCats = this.CAT_KEYS.map(k => ({
+      key:k, label:t.menuCats[k], onClick:() => this.setMenuCat(k),
+      style: tabBase + (this.state.activeMenuCat===k ? ';background:#B25A30;color:#FBF6EC' : ';background:rgba(251,246,236,.08);color:rgba(251,246,236,.7);border:1px solid rgba(251,246,236,.18)')
+    }));
+    const menuItems = (this.MENU[this.state.activeMenuCat]||[]).map(it => ({ name:it.name, desc:it.d[lang], price:it.price }));
+
+    const guestOptions = [1,2,3,4,5,6,7,8].map(n => ({ v:String(n), l: n===8 ? (lang==='de'?'8+ Personen':'8+ guests') : String(n) }));
+
+    const gallery = this.GALLERY.map((g,i)=>({ id:g.id, src:g.src, cap:g.cap[lang] }));
+    const testimonials = this.TESTI.map(r=>({ q:r[lang], n:r.n }));
+
+    const dayNames = lang==='de'
+      ? {mo:'Montag',di:'Dienstag',mi:'Mittwoch',do:'Donnerstag',fr:'Freitag',sa:'Samstag',so:'Sonntag'}
+      : {mo:'Monday',di:'Tuesday',mi:'Wednesday',do:'Thursday',fr:'Friday',sa:'Saturday',so:'Sunday'};
+    const todayIdx = new Date().getDay();
+    const closedLabel = lang==='de' ? 'Ruhetag' : 'Closed';
+    const hoursRows = this.HOURS.map(h=>{
+      const isToday = this.DAYIDX[h.k]===todayIdx;
+      let slots;
+      if(h.closed) slots = [{txt:closedLabel, closed:true, style:'font-size:14.5px;color:#d98a5e'}];
+      else if(h.lunch) slots = [{txt:h.lunch, style:'font-size:14.5px;color:rgba(251,246,236,.85)'},{txt:h.dinner, style:'font-size:14.5px;color:rgba(251,246,236,.85)'}];
+      else slots = [{txt:h.dinner, style:'font-size:14.5px;color:rgba(251,246,236,.85)'}];
+      return {day:dayNames[h.k], slots, isToday,
+        rowStyle:'display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 13px;border-radius:7px;'+(isToday?'background:rgba(178,90,48,.24);':''),
+        dayStyle:'font-size:15px;white-space:nowrap;'+(isToday?'color:#FBF6EC;font-weight:600;':'color:rgba(251,246,236,.82);'),
+        slotsStyle:'display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;text-align:right'
+      };
+    });
+    const todayName = dayNames[Object.keys(this.DAYIDX).find(k=>this.DAYIDX[k]===todayIdx)] || '';
+
+    const toggleOn = this.state.statsOn;
+    const statsToggleStyle = 'width:44px;height:24px;border-radius:20px;border:none;cursor:pointer;position:relative;flex:none;transition:background .2s;background:'+(toggleOn?'#5C6638':'#cbbfae');
+    const statsKnobStyle = 'position:absolute;top:3px;left:'+(toggleOn?'23px':'3px')+';width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s';
+
+    const resName = this.state.res.name||'', dishThanks = lang==='de'
+      ? 'Vielen Dank, '+(this.state.res.name||'')+'! Wir haben Ihre Reservierung erhalten und bestätigen sie in Kürze per E-Mail.'
+      : 'Thank you, '+(this.state.res.name||'')+'! We have received your reservation and will confirm by email shortly.';
+
+    return {
+      t,
+      headerStyle: 'position:fixed;top:0;left:0;right:0;z-index:100;height:74px;transition:all .3s;'+(headerSolid?'background:rgba(28,20,13,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(0,0,0,.25)':'background:linear-gradient(rgba(20,14,8,.55),transparent)'),
+      headerInk,
+      langBorder: 'rgba(251,246,236,.4)',
+      deBtn: 'border:none;cursor:pointer;padding:6px 11px;font-size:11.5px;font-weight:600;letter-spacing:.5px;'+(lang==='de'?'background:#B25A30;color:#FBF6EC':'background:transparent;color:#FBF6EC'),
+      enBtn: 'border:none;cursor:pointer;padding:6px 11px;font-size:11.5px;font-weight:600;letter-spacing:.5px;'+(lang==='en'?'background:#B25A30;color:#FBF6EC':'background:transparent;color:#FBF6EC'),
+
+      isHome: this.state.view==='home',
+      isImpressum: this.state.view==='impressum',
+      isDatenschutz: this.state.view==='datenschutz',
+
+      setDE: () => this.setLang('de'),
+      setEN: () => this.setLang('en'),
+      toggleNav: this.toggleNav,
+      goTop: this.goTop,
+      goImpressum: this.goImpressum,
+      goDatenschutz: this.goDatenschutz,
+      navAbout: () => this.scrollTo('about'),
+      navMenu: () => this.scrollTo('menu'),
+      navCatering: () => this.scrollTo('catering'),
+      navReserve: () => this.scrollTo('reserve'),
+      navGallery: () => this.scrollTo('gallery'),
+      navContact: () => this.scrollTo('contact'),
+
+      mobileNav: this.state.mobileNav,
+
+      cateringServices: t.catering.services,
+      menuCats, menuItems, activeMenuCat: this.state.activeMenuCat,
+      guestOptions,
+
+      labelStyle, inputStyle, textareaStyle, errStyle,
+      res: this.state.res, resErrors: re,
+      resErrName: re.name?errInput:inputStyle, resErrPhone: re.phone?errInput:inputStyle,
+      resErrEmail: re.email?errInput:inputStyle, resErrDate: re.date?errInput:inputStyle, resErrTime: re.time?errInput:inputStyle,
+      updateRes: this.updateRes, submitRes: this.submitRes, resetRes: this.resetRes,
+      resDone: this.state.resDone, resNotDone: !this.state.resDone,
+      resSuccessText: dishThanks,
+
+      cat: this.state.cat, catErrors: ce,
+      catErrName: ce.name?errInput:inputStyle, catErrEmail: ce.email?errInput:inputStyle,
+      updateCat: this.updateCat, submitCat: this.submitCat,
+      catDone: this.state.catDone, catNotDone: !this.state.catDone,
+
+      gallery, testimonials, hoursRows, todayName,
+      lightboxOpen: this.state.lightbox!==null,
+      lightboxCaption: this.state.lightbox!==null ? this.GALLERY[this.state.lightbox].cap[lang] : '',
+      lightboxImgStyle: 'width:min(900px,92vw);max-height:80vh;aspect-ratio:4/3;border-radius:8px;box-shadow:0 40px 90px rgba(0,0,0,.6);background-position:center;background-size:cover;background-image:url(\'' + (this.state.lightbox!==null ? this.GALLERY[this.state.lightbox].src : this.GALLERY[0].src) + '\')',
+      closeLightbox: this.closeLightbox,
+
+      mapConsent: this.state.mapConsent, mapNoConsent: !this.state.mapConsent, loadMap: this.loadMap,
+
+      showCookie: this.state.consent===null,
+      cookieSettingsOpen: this.state.cookieSettingsOpen,
+      cookieSettingsClosed: !this.state.cookieSettingsOpen,
+      acceptAll: this.acceptAll, acceptNecessary: this.acceptNecessary,
+      openCookieSettings: this.openCookieSettings, saveCookieSettings: this.saveCookieSettings,
+      toggleStats: this.toggleStats, statsOn: this.state.statsOn,
+      statsToggleStyle, statsKnobStyle,
+
+      impressumSections: this.impressum(t),
+      datenschutzSections: this.datenschutz(t),
+
+      year: new Date().getFullYear(),
+    };
+  }
+}
+</script>
+</body>
+</html>
