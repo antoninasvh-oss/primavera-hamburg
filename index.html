@@ -30,6 +30,9 @@
 <link rel="canonical" href="https://www.primavera-hamburg.de/">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
+  [data-grid="reviews"]::-webkit-scrollbar{display:none}
+  image-slot#gal-lasagne::part(image){top:26% !important}
+  image-slot#gal-tartufo::part(image){top:36% !important}
   html{scroll-behavior:smooth}
   body{-webkit-font-smoothing:antialiased;background:#F4EBDD}
   input,select,textarea,button{font-family:inherit}
@@ -42,13 +45,27 @@
     [data-grid="2to1"]{grid-template-columns:1fr!important;gap:40px!important}
     [data-grid="footer"]{grid-template-columns:1fr!important;gap:32px!important}
     [data-grid="gallery"]{grid-template-columns:1fr 1fr!important}
+    [data-photo="about"]{height:320px!important}
+    [data-bg="fixed"]{background-attachment:scroll!important}
+    [data-grid="menucats"]{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -24px 40px!important;padding:0 24px 6px}
+    [data-grid="menucats"]::-webkit-scrollbar{display:none}
+    [data-grid="menucats"] button{flex:none!important}
+    [data-grid="reviews"]{margin:0 -24px!important;padding:6px 24px 14px!important}
+    [data-grid="reviews"]>div{flex:0 0 82%!important}
   }
   @media(max-width:560px){
-    [data-grid="gallery"]{grid-template-columns:1fr!important}
+    [data-grid="gallery"]{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:14px;margin:0 -18px;padding:0 18px 6px}
+    [data-grid="gallery"]::-webkit-scrollbar{display:none}
+    [data-grid="gallery"]>div{flex:0 0 78%!important;scroll-snap-align:center}
     [data-lang]{display:none!important}
     [data-call] [data-callnum]{display:none!important}
     [data-call]{padding:10px 12px!important}
     section{padding-left:18px!important;padding-right:18px!important}
+    [data-cookie="panel"]{padding:20px!important}
+    [data-cookie="panel"] h3{font-size:20px!important;margin-bottom:8px!important}
+    [data-cookie="panel"] p{font-size:13px!important;margin-bottom:14px!important}
+    [data-cookie="actions"] button{min-width:0!important;padding:12px 10px!important;font-size:13.5px!important}
+    [data-cookie="actions"] button:nth-of-type(3){flex-basis:100%!important}
   }
 </style>
 <script type="application/ld+json">
@@ -85,6 +102,7 @@
         <button onClick="{{ navMenu }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.menu }}</button>
         <button onClick="{{ navCatering }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.catering }}</button>
         <button onClick="{{ navGallery }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.gallery }}</button>
+        <button onClick="{{ navReviews }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.reviews }}</button>
         <button onClick="{{ navContact }}" style="background:none;border:none;cursor:pointer;font-size:13.5px;letter-spacing:.3px;color:{{ headerInk }}" style-hover="color:#B25A30">{{ t.nav.contact }}</button>
       </nav>
 
@@ -110,6 +128,7 @@
       <button onClick="{{ navMenu }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.menu }}</button>
       <button onClick="{{ navCatering }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.catering }}</button>
       <button onClick="{{ navGallery }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.gallery }}</button>
+      <button onClick="{{ navReviews }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.reviews }}</button>
       <button onClick="{{ navContact }}" style="background:none;border:none;border-bottom:1px solid rgba(251,246,236,.12);padding:18px 0;text-align:left;font-family:'Cormorant Garamond',serif;font-size:28px;color:#FBF6EC;cursor:pointer">{{ t.nav.contact }}</button>
       <button onClick="{{ navReserve }}" style="margin-top:28px;background:#B25A30;color:#FBF6EC;border:none;border-radius:30px;padding:16px;font-size:15px;font-weight:500;cursor:pointer">{{ t.cta.reserve }}</button>
       <button onClick="{{ toggleNav }}" style="position:absolute;top:28px;right:28px;background:none;border:none;color:#FBF6EC;font-size:30px;cursor:pointer;line-height:1">×</button>
@@ -160,20 +179,20 @@
               <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#57493B;margin-top:6px">{{ t.about.s2 }}</div>
             </div>
             <div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#5C6638;line-height:1">Forno</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:#5C6638;line-height:1">48h</div>
               <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#57493B;margin-top:6px">{{ t.about.s3 }}</div>
             </div>
           </div>
         </div>
-        <div style="position:relative;height:520px;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(42,32,24,.5)">
+        <div data-photo="about" style="position:relative;height:520px;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(42,32,24,.5)">
           <image-slot id="about-photo" src="images/pasta-scampi-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
-          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 50%,rgba(26,18,11,.55))"><div style="position:absolute;inset:18px;border:1px solid rgba(251,246,236,.3);border-radius:4px"></div><span style="position:absolute;left:28px;bottom:26px;font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:#FBF6EC;text-shadow:0 1px 12px rgba(0,0,0,.55)">{{ t.about.photo }}</span></div>
+          <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(26,18,11,.6))"><span style="position:absolute;left:24px;bottom:22px;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:#FBF6EC;text-shadow:0 1px 12px rgba(0,0,0,.55)">{{ t.about.photo }}</span></div>
         </div>
       </div>
     </section>
 
     <!-- ATMOSPHERE BAND -->
-    <section style="position:relative;height:56vh;min-height:380px;overflow:hidden;background:linear-gradient(rgba(20,14,8,.28),rgba(20,14,8,.62)),url('images/terrace.jpg');background-size:cover;background-position:center;background-attachment:fixed">
+    <section data-bg="fixed" style="position:relative;height:56vh;min-height:380px;overflow:hidden;background:linear-gradient(rgba(20,14,8,.28),rgba(20,14,8,.62)),url('images/terrace.jpg');background-size:cover;background-position:center;background-attachment:fixed">
       <div style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
         <p style="font-family:'Marck Script',cursive;font-size:clamp(44px,8vw,84px);color:#FBF6EC;line-height:1;text-shadow:0 2px 30px rgba(0,0,0,.6)">La dolce vita</p>
         <p style="font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(251,246,236,.82);margin-top:16px;text-shadow:0 1px 12px rgba(0,0,0,.6)">{{ t.video.sub }}</p>
@@ -188,7 +207,7 @@
           <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,54px);line-height:1.06">{{ t.menu.title }}</h2>
           <p style="font-size:16px;line-height:1.7;color:rgba(251,246,236,.7);margin-top:18px">{{ t.menu.subtitle }}</p>
         </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px">
+        <div data-grid="menucats" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px">
           <sc-for list="{{ menuCats }}" as="cat" hint-placeholder-count="7">
             <button onClick="{{ cat.onClick }}" style="{{ cat.style }}">{{ cat.label }}</button>
           </sc-for>
@@ -197,7 +216,12 @@
           <sc-for list="{{ menuItems }}" as="item" hint-placeholder-count="6">
             <div style="display:flex;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid rgba(251,246,236,.12);animation:floatup .4s ease both">
               <div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#FBF6EC">{{ item.name }}</div>
+                <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#FBF6EC">{{ item.name }}</div>
+                  <sc-if value="{{ item.badge }}">
+                    <span style="background:#B25A30;color:#FBF6EC;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap">{{ item.badge }}</span>
+                  </sc-if>
+                </div>
                 <div style="font-size:13.5px;line-height:1.5;color:rgba(251,246,236,.6);margin-top:4px">{{ item.desc }}</div>
               </div>
               <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#d98a5e;white-space:nowrap">{{ item.price }} €</div>
@@ -297,22 +321,22 @@
           <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
             <image-slot id="gal-pizza-table" src="images/pizza-table-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
             <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
-            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Tartofo</span>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Salami e Funghi</span>
           </div>
           <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
             <image-slot id="gal-tartufo" src="images/dolce-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
             <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
-            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Antipasti della Casa</span>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Tartufo</span>
           </div>
           <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
             <image-slot id="gal-aperitivo" src="images/spritz-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
             <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
-            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Aperitivo della Casa</span>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Hugo</span>
           </div>
           <div style="position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#e7dcc9">
-            <image-slot id="gal-penne-delizia" src="images/penne-interior-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <image-slot id="gal-antipasti-casa" src="images/antipasti-della-casa-web.jpg" shape="rect" fit="cover" placeholder="Foto hierher ziehen" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
             <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(20,14,8,.72),transparent 58%);z-index:1"></div>
-            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Pizza Margherita</span>
+            <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Antipasti della Casa</span>
           </div>
         </div>
         <p style="text-align:center;font-size:12.5px;color:#8a7c6c;margin-top:24px">{{ t.gallery.note }}</p>
@@ -320,16 +344,19 @@
     </section>
 
     <!-- REVIEWS -->
-    <section style="background:#F4EBDD;padding:104px 24px">
+    <section id="reviews" style="background:#F4EBDD;padding:104px 24px">
       <div style="max-width:1140px;margin:0 auto">
         <div style="text-align:center;margin-bottom:46px">
           <p style="font-family:'Marck Script',cursive;font-size:36px;color:#B25A30;line-height:1;margin-bottom:6px">Grazie!</p>
           <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#B25A30;margin-bottom:14px">{{ t.reviews.eyebrow }}</p>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.06;color:#2A2018">{{ t.reviews.title }}</h2>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,52px);line-height:1.06;color:#2A2018;margin-bottom:16px">{{ t.reviews.title }}</h2>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#FBF6EC;border:1px solid rgba(178,90,48,.28);border-radius:30px;padding:9px 20px;font-size:13.5px;font-weight:600;color:#57493B;letter-spacing:.2px">
+            <span style="color:#e0a06a;letter-spacing:1px">★★★★★</span>{{ t.reviews.badge }}
+          </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" data-grid="2to1">
+        <div style="display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:6px 6px 14px" data-grid="reviews">
           <sc-for list="{{ testimonials }}" as="r" hint-placeholder-count="3">
-            <div style="background:#FBF6EC;border:1px solid rgba(42,32,24,.08);border-radius:10px;padding:30px;box-shadow:0 20px 44px -34px rgba(42,32,24,.4);display:flex;flex-direction:column;gap:16px">
+            <div style="background:#FBF6EC;border:1px solid rgba(42,32,24,.08);border-radius:10px;padding:30px;box-shadow:0 20px 44px -34px rgba(42,32,24,.4);display:flex;flex-direction:column;gap:16px;flex:0 0 340px;scroll-snap-align:start">
               <div style="color:#e0a06a;font-size:17px;letter-spacing:3px">★★★★★</div>
               <p style="font-size:17px;line-height:1.65;color:#3a2e22;font-family:'Cormorant Garamond',serif;font-style:italic">„{{ r.q }}"</p>
               <div style="margin-top:auto;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;color:#8a7c6c">{{ r.n }}</div>
@@ -491,7 +518,7 @@
           </div>
         </sc-if>
 
-        <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <div data-cookie="actions" style="display:flex;flex-wrap:wrap;gap:10px">
           <button onClick="{{ acceptAll }}" style="flex:1;min-width:160px;background:#B25A30;color:#FBF6EC;border:none;border-radius:6px;padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#9c4a26">{{ t.cookie.all }}</button>
           <button onClick="{{ acceptNecessary }}" style="flex:1;min-width:160px;background:#FBF6EC;color:#2A2018;border:1px solid rgba(42,32,24,.25);border-radius:6px;padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer" style-hover="border-color:#2A2018">{{ t.cookie.necessary }}</button>
           <sc-if value="{{ cookieSettingsClosed }}">
@@ -572,18 +599,18 @@ class Component extends DCLogic {
 
   T = {
     de: {
-      nav:{about:'Über uns',menu:'Speisekarte',catering:'Catering',gallery:'Galerie',contact:'Kontakt'},
+      nav:{about:'Über uns',menu:'Speisekarte',catering:'Catering',gallery:'Galerie',reviews:'Bewertungen',contact:'Kontakt'},
       cta:{reserve:'Tisch reservieren',menu:'Speisekarte ansehen',catering:'Catering anfragen'},
       video:{sub:'Sommerabende auf unserer Terrasse'},
-      hero:{eyebrow:'Trattoria · Hamburg Altstadt',title:'Authentische italienische Küche im Herzen Hamburgs',subtitle:'Pizza aus dem Holzofen, hausgemachte Pasta und ein Glas Wein wie in Italien – seit 2009 in der Hamburger Altstadt.',scroll:'Scrollen'},
-      about:{eyebrow:'Über uns',title:'Eine Familie, eine Leidenschaft',p1:'Primavera begann als kleiner Familientraum: echte italienische Gastfreundschaft nach Hamburg zu bringen. Was als Rezept der Nonna anfing, ist heute ein fester Treffpunkt in der Altstadt.',p2:'Wir kochen mit frischen, saisonalen Zutaten – San-Marzano-Tomaten, Büffelmozzarella aus Kampanien und Olivenöl aus Apulien. Unsere Pizza reift 48 Stunden und kommt aus dem Holzofen.',s1:'Seit',s2:'Hausgemacht',s3:'Holzofen',photo:'Im Herzen der Altstadt'},
-      menu:{eyebrow:'Buon Appetito',title:'Unsere Speisekarte',subtitle:'Frisch zubereitet mit hausgemachten Saucen und unserem speziellen Pizzateig. Vegetarische Gerichte und große Salate auch als Hauptgericht.',note:'Alle Preise in Euro inkl. MwSt. Allergene und Zusatzstoffe teilen wir Ihnen gerne mit. Vegetarische und vegane Optionen verfügbar.'},
+      hero:{eyebrow:'Trattoria · Hamburg Altstadt',title:'Authentische italienische Küche im Herzen Hamburgs',subtitle:'Pasta von Hand, Pizza aus dem Holzofen und ein Glas Wein wie in Italien: seit 2009 unser Stück Heimat mitten in der Hamburger Altstadt.',scroll:'Scrollen'},
+      about:{eyebrow:'Über uns',title:'Eine Familie, eine Leidenschaft',p1:'Primavera begann als kleiner Familientraum: echte italienische Gastfreundschaft nach Hamburg zu bringen. Was als Rezept der Nonna anfing, ist heute ein fester Treffpunkt in der Altstadt.',p2:'Wir kochen mit frischen, saisonalen Zutaten – San-Marzano-Tomaten, Büffelmozzarella aus Kampanien und Olivenöl aus Apulien. Unser Pizzateig reift 48 Stunden für den authentischen italienischen Geschmack.',s1:'Seit',s2:'Hausgemacht',s3:'Teigreifung',photo:'Im Herzen der Altstadt'},
+      menu:{eyebrow:'Buon Appetito',title:'Unsere Speisekarte',subtitle:'Frisch zubereitet mit hausgemachten Saucen und unserem speziellen Pizzateig. Vegetarische Gerichte und große Salate auch als Hauptgericht.',note:'Alle Preise in Euro inkl. MwSt. Allergene und Zusatzstoffe teilen wir Ihnen gerne mit. Vegetarische und vegane Optionen verfügbar.',picTitle:'Ausgewählte Klassiker in Bildern'},
       menuCats:{antipasti:'Antipasti',salate:'Insalata',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Birra',hauswein:'Hauswein',vini:'Vini',spritz:'Spritz & Cocktails',caffe:'Caffè'},
       catering:{eyebrow:'Catering Hamburg',title:'Italienisch genießen – an Ihrem Ort',subtitle:'Ob Firmenfeier, Hochzeit oder privates Fest: Wir bringen unsere Küche zu Ihnen. Vom Antipasti-Buffet bis zum Vollservice mit Personal.',s1:'Firmenfeier',s2:'Geburtstag',s3:'Hochzeit',s4:'Private Veranstaltung',services:[{t:'Firmenfeiern',d:'Buffets & Fingerfood fürs Büro und Events.'},{t:'Geburtstage',d:'Persönliche Menüs für jeden Anlass.'},{t:'Hochzeiten',d:'Vom Aperitivo bis zum Dolce-Buffet.'},{t:'Private Feiern',d:'Familienfeste & Dinner zu Hause.'}],formTitle:'Catering anfragen',formSub:'Erzählen Sie uns von Ihrer Veranstaltung – wir melden uns mit einem Angebot.',submit:'Anfrage senden',successTitle:'Grazie mille!',successText:'Ihre Catering-Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot.',contactTitle:'Sprechen wir darüber',contactText:'Erzählen Sie uns von Ihrer Feier – am schnellsten telefonisch. Wir stellen Ihr Menü persönlich zusammen.',orMail:'Oder schreiben Sie uns:'},
       reserve:{eyebrow:'Reservierung',title:'Einfach anrufen',subtitle:'Am liebsten ganz persönlich: Rufen Sie uns an – wir sagen Ihnen sofort, ob ein Tisch frei ist, auch für heute Abend.',hours:'Mo–Fr 11:30–15 & 17–22 Uhr · Sa 16–23 Uhr · So 17–22 Uhr',callCta:'Jetzt anrufen',orForm:'Oder kurz online anfragen',formHint:'Hinterlassen Sie Ihre Daten – wir rufen zur Bestätigung kurz zurück.',submit:'Anfrage senden',privacy:'Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer Datenschutzerklärung zu.',successTitle:'Grazie!',again:'Weitere Anfrage',successPrefix:'Vielen Dank',note:'Für größere Gruppen, Geburtstage oder Feiern rufen Sie uns einfach an – wir finden den passenden Tisch für Sie.'},
       fields:{name:'Name',phone:'Telefonnummer',email:'E-Mail',date:'Datum',time:'Uhrzeit',guests:'Anzahl Personen',occasion:'Anlass (optional)',message:'Nachricht',eventType:'Art der Veranstaltung'},
       gallery:{eyebrow:'Galerie',title:'Atmosphäre & Geschmack',note:'Echte Eindrücke aus unserem Ristorante.',items:['Pizza aus dem Holzofen','Pizza Napoli','Tartufo Eisdessert','Spaghetti Scampi','Sommerabende auf der Terrasse','Unser Gastraum']},
-      reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.'},
+      reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.',badge:'4,7 ★ · 375 Bewertungen bei Google'},
       contact:{eyebrow:'Kontakt',title:'Besuchen Sie uns',addr:'Adresse',phone:'Telefon',email:'E-Mail',hours:'Öffnungszeiten',daysAll:'Mo – So',kitchen:'Warme Küche bis 21:30 Uhr · Sa bis 22:30 Uhr',pause:'Mittagspause täglich von 15:00 bis 17:00 Uhr (Mo–Fr)',mapBtn:'Google Maps laden',mapNote:'Beim Laden werden Daten an Google übertragen. Siehe Datenschutzerklärung.',mapLoaded:'Karte geladen – Hopfensack 18, 20457 Hamburg'},
       footer:{tagline:'Authentische italienische Küche im Herzen der Hamburger Altstadt. Benvenuti.',visit:'Besuch',legal:'Rechtliches',impressum:'Impressum',datenschutz:'Datenschutzerklärung',cookies:'Cookie-Einstellungen',rights:'Alle Rechte vorbehalten.',made:'Buon appetito · Hamburg'},
       cookie:{title:'Wir respektieren Ihre Privatsphäre',text:'Wir verwenden Cookies, um unsere Website bereitzustellen und – mit Ihrer Einwilligung – die Nutzung zu analysieren. Analyse- und Karten-Dienste werden erst nach Ihrer Zustimmung geladen.',all:'Alle akzeptieren',necessary:'Nur notwendige',settings:'Einstellungen',save:'Auswahl speichern',necTitle:'Notwendige Cookies',necDesc:'Erforderlich für den Betrieb der Website. Immer aktiv.',statTitle:'Statistik & Analyse',statDesc:'Google Analytics 4 mit Consent Mode. Hilft uns, die Website zu verbessern.',always:'Immer aktiv'},
@@ -592,18 +619,18 @@ class Component extends DCLogic {
       datenschutz:{title:'Datenschutzerklärung',sub:'Gemäß DSGVO und TTDSG · Stand 2026'},
     },
     en: {
-      nav:{about:'About',menu:'Menu',catering:'Catering',gallery:'Gallery',contact:'Contact'},
+      nav:{about:'About',menu:'Menu',catering:'Catering',gallery:'Gallery',reviews:'Reviews',contact:'Contact'},
       cta:{reserve:'Reserve a table',menu:'View the menu',catering:'Request catering'},
       video:{sub:'Summer evenings on our terrace'},
-      hero:{eyebrow:'Trattoria · Hamburg Old Town',title:'Authentic Italian cuisine in the heart of Hamburg',subtitle:'Wood-fired pizza, handmade pasta and a glass of wine just like in Italy – in Hamburg’s Old Town since 2009.',scroll:'Scroll'},
-      about:{eyebrow:'About us',title:'One family, one passion',p1:'Primavera began as a small family dream: to bring genuine Italian hospitality to Hamburg. What started as Nonna’s recipe is today a beloved meeting point in the Old Town.',p2:'We cook with fresh, seasonal ingredients – San Marzano tomatoes, buffalo mozzarella from Campania and olive oil from Puglia. Our pizza dough proofs for 48 hours and comes from the wood-fired oven.',s1:'Since',s2:'Homemade',s3:'Wood oven',photo:'In the heart of the Old Town'},
-      menu:{eyebrow:'Buon Appetito',title:'Our menu',subtitle:'Freshly prepared with homemade sauces and our special pizza dough. Vegetarian dishes and large salads also as a main course.',note:'All prices in euros incl. VAT. We are happy to share allergen information. Vegetarian and vegan options available.'},
+      hero:{eyebrow:'Trattoria · Hamburg Old Town',title:'Authentic Italian cuisine in the heart of Hamburg',subtitle:'Handmade pasta, wood-fired pizza and a glass of wine just like in Italy: our little piece of home in Hamburg’s Old Town since 2009.',scroll:'Scroll'},
+      about:{eyebrow:'About us',title:'One family, one passion',p1:'Primavera began as a small family dream: to bring genuine Italian hospitality to Hamburg. What started as Nonna’s recipe is today a beloved meeting point in the Old Town.',p2:'We cook with fresh, seasonal ingredients – San Marzano tomatoes, buffalo mozzarella from Campania and olive oil from Puglia. Our pizza dough proofs for 48 hours for that authentic Italian taste.',s1:'Since',s2:'Homemade',s3:'Dough proofing',photo:'In the heart of the Old Town'},
+      menu:{eyebrow:'Buon Appetito',title:'Our menu',subtitle:'Freshly prepared with homemade sauces and our special pizza dough. Vegetarian dishes and large salads also as a main course.',note:'All prices in euros incl. VAT. We are happy to share allergen information. Vegetarian and vegan options available.',picTitle:'A few classics in pictures'},
       menuCats:{antipasti:'Antipasti',salate:'Salads',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Beer',hauswein:'House wine',vini:'Wines',spritz:'Spritz & Cocktails',caffe:'Coffee'},
       catering:{eyebrow:'Catering Hamburg',title:'Enjoy Italian – at your place',subtitle:'Company party, wedding or private celebration: we bring our kitchen to you. From an antipasti buffet to full service with staff.',s1:'Company party',s2:'Birthday',s3:'Wedding',s4:'Private event',services:[{t:'Company parties',d:'Buffets & finger food for office & events.'},{t:'Birthdays',d:'Personal menus for any occasion.'},{t:'Weddings',d:'From the aperitivo to the dolci buffet.'},{t:'Private events',d:'Family celebrations & dinners at home.'}],formTitle:'Request catering',formSub:'Tell us about your event – we’ll get back with a quote.',submit:'Send request',successTitle:'Grazie mille!',successText:'Your catering request has been received. We’ll get back to you within 24 hours with a personal quote.',contactTitle:'Let’s talk it through',contactText:'Tell us about your event – fastest by phone. We’ll put together your menu personally.',orMail:'Or drop us a line:'},
       reserve:{eyebrow:'Reservation',title:'Just give us a call',subtitle:'We love the personal touch: call us and we’ll tell you right away if a table is free – even for tonight.',hours:'Mon–Fri 11:30–15 & 17–22 · Sat 16–23 · Sun 17–22',callCta:'Call us now',orForm:'Or send a quick request',formHint:'Leave your details and we’ll call you back to confirm.',submit:'Send request',privacy:'By submitting you agree to the processing of your data per our privacy policy.',successTitle:'Grazie!',again:'New request',successPrefix:'Thank you',note:'For larger groups, birthdays or celebrations just give us a call – we’ll find the right table for you.'},
       fields:{name:'Name',phone:'Phone number',email:'E-mail',date:'Date',time:'Time',guests:'Guests',occasion:'Occasion (optional)',message:'Message',eventType:'Type of event'},
       gallery:{eyebrow:'Gallery',title:'Atmosphere & taste',note:'Real impressions from our ristorante.',items:['Wood-fired pizza','Pizza Napoli','Tartufo ice dessert','Spaghetti Scampi','Summer evenings on the terrace','Our dining room']},
-      reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.'},
+      reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.',badge:'4.7 ★ · 375 reviews on Google'},
       contact:{eyebrow:'Contact',title:'Visit us',addr:'Address',phone:'Phone',email:'E-mail',hours:'Opening hours',daysAll:'Mon – Sun',kitchen:'Hot kitchen until 21:30 · Sat until 22:30',pause:'Lunch break daily 15:00–17:00 (Mon–Fri)',mapBtn:'Load Google Maps',mapNote:'Loading transfers data to Google. See privacy policy.',mapLoaded:'Map loaded – Hopfensack 18, 20457 Hamburg'},
       footer:{tagline:'Authentic Italian cuisine in the heart of Hamburg’s Old Town. Benvenuti.',visit:'Visit',legal:'Legal',impressum:'Imprint',datenschutz:'Privacy policy',cookies:'Cookie settings',rights:'All rights reserved.',made:'Buon appetito · Hamburg'},
       cookie:{title:'We respect your privacy',text:'We use cookies to provide our website and – with your consent – to analyse usage. Analytics and map services load only after your consent.',all:'Accept all',necessary:'Necessary only',settings:'Settings',save:'Save selection',necTitle:'Necessary cookies',necDesc:'Required for the website to function. Always active.',statTitle:'Statistics & analytics',statDesc:'Google Analytics 4 with Consent Mode. Helps us improve the site.',always:'Always on'},
@@ -653,7 +680,7 @@ class Component extends DCLogic {
     ],
     auflauf:[
       {name:'Cannelloni Ricota Spinaci',d:{de:'Geff. Nudeln mit Ricotakäse, Spinat, in Béchamelsauce Käse überb.',en:'Pasta filled with ricotta cheese & spinach, baked with béchamel & cheese'},price:'14,90'},
-      {name:'Lasagne',d:{de:'Rinderhack in Tomaten- & Béchamelsauce und Käse überbacken',en:'Beef ragù in tomato & béchamel sauce, baked with cheese'},price:'16,90'},
+      {name:'Lasagne',d:{de:'Rinderhack in Tomaten- & Béchamelsauce und Käse überbacken',en:'Beef ragù in tomato & béchamel sauce, baked with cheese'},price:'16,90',signature:true},
     ],
     dolci:[
       {name:'Tiramisù',d:{de:'Mascarpone, Espresso, Savoiardi',en:'Mascarpone, espresso, savoiardi'},price:'5,80'},
@@ -713,8 +740,8 @@ class Component extends DCLogic {
     {id:'gal-lasagne', src:'images/auflauf-web.jpg', cap:{de:'Lasagne al Forno', en:'Lasagne al forno'}},
     {id:'gal-pizza-table', src:'images/pizza-table-web.jpg', cap:{de:'Pizza aus dem Holzofen', en:'Wood-fired pizza'}},
     {id:'gal-tartufo', src:'images/dolce-web.jpg', cap:{de:'Tartufo', en:'Tartufo'}},
-    {id:'gal-aperitivo', src:'images/spritz-web.jpg', cap:{de:'Aperitivo della Casa', en:'House aperitivo'}},
-    {id:'gal-penne-delizia', src:'images/penne-interior-web.jpg', cap:{de:'Penne Delizia', en:'Penne Delizia'}},
+    {id:'gal-aperitivo', src:'images/spritz-web.jpg', cap:{de:'Hugo', en:'Hugo'}},
+    {id:'gal-antipasti-casa', src:'images/antipasti-della-casa-web.jpg', cap:{de:'Antipasti della Casa', en:'Antipasti della Casa'}},
   ];
 
   HOURS = [
@@ -732,6 +759,11 @@ class Component extends DCLogic {
     {de:'Das Restaurant ist familiär, das Essen sehr lecker und der Service freundlich und schnell. Auf jeden Fall einen Besuch wert!', en:'The place feels homely, the food very tasty and the service friendly and fast. Definitely worth a visit!', n:'Gast · Tripadvisor'},
     {de:'Super gute Pastagerichte. Herzliche Bedienung und eine gemütliche Atmosphäre machten den Abend zu einem Highlight. Empfehlenswert!', en:'Super good pasta dishes. Warm service and a cosy atmosphere made the evening a highlight. Recommended!', n:'Gast · Tripadvisor'},
     {de:'Großartiger, freundlicher Service. Fantastisches Essen. Authentisch italienisch – sehr zu empfehlen. Perfetto!', en:'Great friendly service. Fantastic food. Authentic Italian. Highly recommended. Perfetto!', n:'Gast · Tripadvisor'},
+    {de:'Versteckte Perle unter den italienischen Restaurants, die definitiv zahlreiche großartige Bewertungen verdient!', en:'A hidden gem among Italian restaurants that definitely deserves plenty of great reviews!', n:'Katarzyna G. · Google'},
+    {de:'10/10 – das Personal war sehr freundlich und hilfsbereit, unser Kellner hat sich sehr bemüht, Karte und Atmosphäre waren wirklich toll. Wir haben Pizza, Salat und überbackene Pasta geteilt, danach noch ein großes Stück Tiramisu – alles wunderbar und fair im Preis.', en:'10/10 — the staff were so friendly and helpful, our waiter really went above and beyond, the menu and atmosphere were great. We shared a pizza, a salad and a baked pasta, then a huge slice of tiramisu for dessert — everything was wonderful and fairly priced.', n:'Laura Burden · Google'},
+    {de:'Wir sind zufällig auf dieses Restaurant gestoßen und waren begeistert. Die Karte ist klein, aber für jeden ist etwas dabei. Die Gerichte sind lecker und preislich fair.', en:'We stumbled on this restaurant by chance and were delighted. The menu is small, but there is something for everyone. The dishes are tasty and fairly priced.', n:'Kathi Liss · Google'},
+    {de:'Hier war alles perfekt. Der Service war unglaublich freundlich und aufmerksam, wir konnten jederzeit noch etwas zu trinken bestellen. Die Atmosphäre ist super gemütlich. Und die Pizza ist wirklich fantastisch – knuspriger Boden, leckere Beläge. So eine gute Pizza hatte ich lange nicht mehr.', en:'Everything here was perfect. The service was incredibly friendly and attentive, and we could keep ordering drinks the whole time. The atmosphere is super cozy. And the pizza is truly fantastic — crispy crust, tasty toppings. I hadn’t had pizza this good in a long time.', n:'Tobias L. · Google'},
+    {de:'Ein kleines, gemütliches Restaurant mitten in der Stadt. Jetzt haben wir dank Primavera unseren italienischen Lieblingsplatz!', en:'A small, cozy restaurant in the city center. Now we have our favorite Italian place thanks to Primavera!', n:'Kamil Ateş · Google'},
   ];
 
   impressum(t) {
@@ -835,7 +867,7 @@ class Component extends DCLogic {
       key:k, label:t.menuCats[k], onClick:() => this.setMenuCat(k),
       style: tabBase + (this.state.activeMenuCat===k ? ';background:#B25A30;color:#FBF6EC' : ';background:rgba(251,246,236,.08);color:rgba(251,246,236,.7);border:1px solid rgba(251,246,236,.18)')
     }));
-    const menuItems = (this.MENU[this.state.activeMenuCat]||[]).map(it => ({ name:it.name, desc:it.d[lang], price:it.price }));
+    const menuItems = (this.MENU[this.state.activeMenuCat]||[]).map(it => ({ name:it.name, desc:it.d[lang], price:it.price, badge: it.signature ? (lang==='de'?'Empfehlung':'Recommended') : '' }));
 
     const guestOptions = [1,2,3,4,5,6,7,8].map(n => ({ v:String(n), l: n===8 ? (lang==='de'?'8+ Personen':'8+ guests') : String(n) }));
 
@@ -892,6 +924,7 @@ class Component extends DCLogic {
       navCatering: () => this.scrollTo('catering'),
       navReserve: () => this.scrollTo('reserve'),
       navGallery: () => this.scrollTo('gallery'),
+      navReviews: () => this.scrollTo('reviews'),
       navContact: () => this.scrollTo('contact'),
 
       mobileNav: this.state.mobileNav,
