@@ -30,6 +30,8 @@
 <link rel="canonical" href="https://www.primavera-hamburg.de/">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
+  .menucats-arrow{display:none}
+  .gallery-scrollhint{display:none}
   [data-grid="reviews"]::-webkit-scrollbar{display:none}
   image-slot#gal-lasagne::part(image){top:26% !important}
   image-slot#gal-tartufo::part(image){top:36% !important}
@@ -48,9 +50,12 @@
     [data-grid="gallery"]{grid-template-columns:1fr 1fr!important}
     [data-photo="about"]{height:320px!important}
     [data-bg="fixed"]{background-attachment:scroll!important}
-    [data-grid="menucats"]{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -24px 40px!important;padding:0 24px 6px}
+    [data-grid="menucats"]{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -24px!important;padding:0 24px 6px}
     [data-grid="menucats"]::-webkit-scrollbar{display:none}
     [data-grid="menucats"] button{flex:none!important}
+    .menucats-arrow{display:flex!important;align-items:center;justify-content:center;position:absolute;top:0;bottom:6px;width:34px;border:none;font-size:24px;line-height:1;color:#d98a5e;z-index:2;cursor:pointer;background:none;padding:0}
+    .menucats-arrow-l{left:-4px;background:linear-gradient(90deg,#221A11 45%,rgba(34,26,17,0))}
+    .menucats-arrow-r{right:-4px;background:linear-gradient(270deg,#221A11 45%,rgba(34,26,17,0))}
     [data-grid="reviews"]{margin:0 -24px!important;padding:6px 24px 14px!important}
     [data-grid="reviews"]>div{flex:0 0 82%!important}
   }
@@ -58,6 +63,9 @@
     [data-grid="gallery"]{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:14px;margin:0 -18px;padding:0 18px 6px}
     [data-grid="gallery"]::-webkit-scrollbar{display:none}
     [data-grid="gallery"]>div{flex:0 0 78%!important;scroll-snap-align:center}
+    .gallery-scrollhint{display:flex!important;justify-content:flex-end;margin-top:10px}
+    .gallery-scrollhint-track{position:relative;width:64px;height:3px;border-radius:3px;background:rgba(42,32,24,.15);overflow:hidden}
+    .gallery-scrollhint-bar{position:absolute;top:0;left:0;height:100%;width:22px;border-radius:3px;background:#B25A30}
     [data-lang]{display:none!important}
     [data-call] [data-callnum]{display:none!important}
     [data-call]{padding:10px 12px!important}
@@ -190,10 +198,14 @@
           <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.5vw,54px);line-height:1.06">{{ t.menu.title }}</h2>
           <p style="font-size:16px;line-height:1.7;color:rgba(251,246,236,.7);margin-top:18px">{{ t.menu.subtitle }}</p>
         </div>
-        <div data-grid="menucats" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px">
-          <sc-for list="{{ menuCats }}" as="cat" hint-placeholder-count="7">
-            <button onClick="{{ cat.onClick }}" style="{{ cat.style }}">{{ cat.label }}</button>
-          </sc-for>
+        <div class="menucats-wrap" style="position:relative;margin-bottom:48px">
+          <div data-grid="menucats" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+            <sc-for list="{{ menuCats }}" as="cat" hint-placeholder-count="7">
+              <button onClick="{{ cat.onClick }}" style="{{ cat.style }}">{{ cat.label }}</button>
+            </sc-for>
+          </div>
+          <button class="menucats-arrow menucats-arrow-l" aria-label="Zurück">‹</button>
+          <button class="menucats-arrow menucats-arrow-r" aria-label="Weiter">›</button>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 56px;max-width:920px;margin:0 auto" data-grid="2to1" key="{{ activeMenuCat }}">
           <sc-for list="{{ menuItems }}" as="item" hint-placeholder-count="6">
@@ -322,6 +334,7 @@
             <span style="position:absolute;left:16px;bottom:14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;text-align:left;color:#FBF6EC;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:2">Antipasti della Casa</span>
           </div>
         </div>
+        <div class="gallery-scrollhint"><div class="gallery-scrollhint-track"><div class="gallery-scrollhint-bar" id="gallery-scrollbar"></div></div></div>
         <p style="text-align:center;font-size:12.5px;color:#8a7c6c;margin-top:24px">{{ t.gallery.note }}</p>
       </div>
     </section>
@@ -952,6 +965,44 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+  (function(){
+    // The site's own runtime re-renders nodes on state changes, which can
+    // detach node-bound listeners — so this binds via delegation on
+    // document, which keeps working regardless of node replacement.
+    document.addEventListener('click', function(e){
+      var arrow = e.target.closest('.menucats-arrow-l, .menucats-arrow-r');
+      if(!arrow) return;
+      var menucats = document.querySelector('[data-grid="menucats"]');
+      if(!menucats) return;
+      var dir = arrow.classList.contains('menucats-arrow-l') ? -160 : 160;
+      menucats.scrollBy({left:dir, behavior:'smooth'});
+    });
+
+    function updateGalleryHint(gallery){
+      var track = document.querySelector('.gallery-scrollhint-track');
+      var bar = document.getElementById('gallery-scrollbar');
+      if(!track || !bar) return;
+      var max = gallery.scrollWidth - gallery.clientWidth;
+      var frac = max > 0 ? gallery.scrollLeft / max : 0;
+      var range = track.clientWidth - bar.clientWidth;
+      bar.style.transform = 'translateX(' + (frac * range) + 'px)';
+    }
+    document.addEventListener('scroll', function(e){
+      if(e.target.nodeType === 1 && e.target.matches('[data-grid="gallery"]')){
+        updateGalleryHint(e.target);
+      }
+    }, true);
+    window.addEventListener('resize', function(){
+      var g = document.querySelector('[data-grid="gallery"]');
+      if(g) updateGalleryHint(g);
+    });
+    setInterval(function(){
+      var g = document.querySelector('[data-grid="gallery"]');
+      if(g) updateGalleryHint(g);
+    }, 1000);
+  })();
 </script>
 </body>
 </html>
