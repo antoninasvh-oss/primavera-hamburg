@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Work+Sans:wght@300;400;500;600&amp;family=Marck+Script&amp;display=swap" rel="stylesheet">
+<base href="/">
 <title>Primavera · Italienisches Restaurant Hamburg Altstadt | Pizza, Pasta &amp; Catering</title>
 <meta name="description" content="Primavera – authentische italienische Küche im Herzen Hamburgs. Pizza, Pasta, Antipasti &amp; Catering. Jetzt Tisch reservieren. Hopfensack 18, 20457 Hamburg.">
 <meta name="keywords" content="Italienisches Restaurant Hamburg, Pizza Hamburg, Pasta Hamburg, Italienisches Essen Hamburg, Catering Hamburg, Mediterranes Restaurant Hamburg, Restaurant Hamburg Altstadt">
@@ -18,16 +11,48 @@
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="Primavera · Italienisches Restaurant im Herzen Hamburgs">
 <meta property="og:description" content="Authentische italienische Küche, Pizza aus dem Holzofen, hausgemachte Pasta und Catering für Ihre Veranstaltung.">
-<meta property="og:site_name" content="Ristorante Primavera">
-<meta property="og:image" content="https://www.primavera-hamburg.de/images/hero.jpg">
+<meta property="og:site_name" content="Primavera Bistro Pizzeria">
+<meta property="og:image" content="https://primavera-hamburg.de/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://www.primavera-hamburg.de/">
+<meta property="og:url" content="https://primavera-hamburg.de/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.primavera-hamburg.de/images/hero.jpg">
+<meta name="twitter:image" content="https://primavera-hamburg.de/images/og-image.jpg">
 <meta name="twitter:title" content="Primavera · Italienisches Restaurant im Herzen Hamburgs">
 <meta name="twitter:description" content="Authentische italienische Küche, Pizza aus dem Holzofen, hausgemachte Pasta und Catering für Ihre Veranstaltung.">
-<link rel="canonical" href="https://www.primavera-hamburg.de/">
+<link rel="canonical" href="https://primavera-hamburg.de/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#221A11">
+<link rel="preload" href="/fonts/CormorantGaramond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/WorkSans-300-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Primavera Bistro Pizzeria",
+  "image":"https://primavera-hamburg.de/images/og-image.jpg",
+  "servesCuisine":["Italian","Mediterranean","Pizza"],
+  "priceRange":"€€",
+  "telephone":"+49 40 32506940",
+  "email":"primavera.altstadt@gmail.com",
+  "url":"https://primavera-hamburg.de/",
+  "address":{"@type":"PostalAddress","streetAddress":"Hopfensack 18","postalCode":"20457","addressLocality":"Hamburg","addressCountry":"DE"},
+  "geo":{"@type":"GeoCoordinates","latitude":53.548495,"longitude":9.999254},
+  "sameAs":["https://www.instagram.com/primaverahamburg/"],
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"11:30","closes":"15:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"17:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"16:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"17:00","closes":"22:00"}],
+  "acceptsReservations":true
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Primavera · Italienisches Restaurant Hamburg Altstadt | Pizza, Pasta &amp; Catering</title>
+<meta name="description" content="Primavera – authentische italienische Küche im Herzen Hamburgs. Pizza, Pasta, Antipasti &amp; Catering. Jetzt Tisch reservieren. Hopfensack 18, 20457 Hamburg.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   .menucats-arrow{display:none}
@@ -77,24 +102,6 @@
     [data-cookie="actions"] button:nth-of-type(3){flex-basis:100%!important}
   }
 </style>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Restaurant",
-  "name":"Ristorante Primavera",
-  "image":"https://www.primavera-hamburg.de/images/hero.jpg",
-  "servesCuisine":["Italian","Mediterranean","Pizza"],
-  "priceRange":"€€",
-  "telephone":"+49 40 32506940",
-  "email":"primavera.altstadt@gmail.com",
-  "url":"https://www.primavera-hamburg.de/",
-  "address":{"@type":"PostalAddress","streetAddress":"Hopfensack 18","postalCode":"20457","addressLocality":"Hamburg","addressCountry":"DE"},
-  "geo":{"@type":"GeoCoordinates","latitude":53.5461,"longitude":9.9944},
-  "sameAs":["https://www.instagram.com/primaverahamburg/"],
-  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"11:30","closes":"15:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"17:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"16:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"17:00","closes":"22:00"}],
-  "acceptsReservations":true
-}
-</script>
 <script src="image-slot.js"></script>
 </helmet>
 
@@ -372,7 +379,7 @@
           <div style="display:flex;flex-direction:column;gap:24px">
             <div>
               <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d98a5e;margin-bottom:6px">{{ t.contact.addr }}</div>
-              <div style="font-size:17px;line-height:1.6;color:rgba(251,246,236,.9)">Ristorante Primavera<br>Hopfensack 18<br>20457 Hamburg</div>
+              <div style="font-size:17px;line-height:1.6;color:rgba(251,246,236,.9)">Primavera Bistro Pizzeria<br>Hopfensack 18<br>20457 Hamburg</div>
             </div>
             <div style="display:flex;gap:48px;flex-wrap:wrap">
               <div>
@@ -488,7 +495,7 @@
       </div>
     </div>
     <div style="max-width:1140px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(251,246,236,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(251,246,236,.45)">
-      <span>© {{ year }} Ristorante Primavera · {{ t.footer.rights }}</span>
+      <span>© {{ year }} Primavera Bistro Pizzeria · {{ t.footer.rights }}</span>
       <span>{{ t.footer.made }}</span>
     </div>
   </footer>
@@ -575,13 +582,13 @@ class Component extends DCLogic {
       if (c) this.setState({ consent: c, statsOn: c === 'all', mapConsent: c === 'all' });
     } catch (e) {}
 
-    const path = window.location.pathname;
+    const path = window.location.pathname.replace(/\/+$/,'') || '/';
     if (path === '/impressum') this.setState({ view: 'impressum' });
     else if (path === '/datenschutz') this.setState({ view: 'datenschutz' });
     else this.setState({ view: 'home' });
 
     this._onPopState = () => {
-      const p = window.location.pathname;
+      const p = window.location.pathname.replace(/\/+$/,'') || '/';
       if (p === '/impressum') this.setState({ view: 'impressum' });
       else if (p === '/datenschutz') this.setState({ view: 'datenschutz' });
       else this.setState({ view: 'home' });
@@ -605,14 +612,14 @@ class Component extends DCLogic {
       catering:{eyebrow:'Catering Hamburg',title:'Italienisch genießen – an Ihrem Ort',subtitle:'Ob Firmenfeier, Hochzeit oder privates Fest: Wir bringen unsere Küche zu Ihnen. Vom Antipasti-Buffet bis zum Vollservice mit Personal.',s1:'Firmenfeier',s2:'Geburtstag',s3:'Hochzeit',s4:'Private Veranstaltung',services:[{t:'Firmenfeiern',d:'Buffets & Fingerfood fürs Büro und Events.'},{t:'Geburtstage',d:'Persönliche Menüs für jeden Anlass.'},{t:'Hochzeiten',d:'Vom Aperitivo bis zum Dolce-Buffet.'},{t:'Private Feiern',d:'Familienfeste & Dinner zu Hause.'}],formTitle:'Catering anfragen',formSub:'Erzählen Sie uns von Ihrer Veranstaltung – wir melden uns mit einem Angebot.',submit:'Anfrage senden',successTitle:'Grazie mille!',successText:'Ihre Catering-Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot.',contactTitle:'Sprechen wir darüber',contactText:'Erzählen Sie uns von Ihrer Feier – am schnellsten telefonisch. Wir stellen Ihr Menü persönlich zusammen.',orMail:'Oder schreiben Sie uns:'},
       reserve:{eyebrow:'Reservierung',title:'Einfach anrufen',subtitle:'Am liebsten ganz persönlich: Rufen Sie uns an – wir sagen Ihnen sofort, ob ein Tisch frei ist, auch für heute Abend.',hours:'Mo–Fr 11:30–15 & 17–22 Uhr · Sa 16–23 Uhr · So 17–22 Uhr',callCta:'Jetzt anrufen',orForm:'Oder kurz online anfragen',formHint:'Hinterlassen Sie Ihre Daten – wir rufen zur Bestätigung kurz zurück.',submit:'Anfrage senden',privacy:'Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer Datenschutzerklärung zu.',successTitle:'Grazie!',again:'Weitere Anfrage',successPrefix:'Vielen Dank',note:'Für größere Gruppen, Geburtstage oder Feiern rufen Sie uns einfach an – wir finden den passenden Tisch für Sie.'},
       fields:{name:'Name',phone:'Telefonnummer',email:'E-Mail',date:'Datum',time:'Uhrzeit',guests:'Anzahl Personen',occasion:'Anlass (optional)',message:'Nachricht',eventType:'Art der Veranstaltung'},
-      gallery:{eyebrow:'Galerie',title:'Atmosphäre & Geschmack',note:'Echte Eindrücke aus unserem Ristorante.',items:['Pizza aus dem Holzofen','Pizza Napoli','Tartufo Eisdessert','Spaghetti Scampi','Sommerabende auf der Terrasse','Unser Gastraum']},
-      reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.',badge:'4,7 ★ · 375 Bewertungen bei Google'},
+      gallery:{eyebrow:'Galerie',title:'Atmosphäre & Geschmack',note:'Echte Eindrücke aus unserem Restaurant.',items:['Pizza aus dem Holzofen','Pizza Napoli','Tartufo Eisdessert','Spaghetti Scampi','Sommerabende auf der Terrasse','Unser Gastraum']},
+      reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.',badge:'4,7 ★ · über 400 Bewertungen bei Google'},
       contact:{eyebrow:'Kontakt',title:'Besuchen Sie uns',addr:'Adresse',phone:'Telefon',email:'E-Mail',hours:'Öffnungszeiten',daysAll:'Mo – So',kitchen:'Warme Küche bis 21:30 Uhr · Sa bis 22:30 Uhr',pause:'Mittagspause täglich von 15:00 bis 17:00 Uhr (Mo–Fr)',mapBtn:'Google Maps laden',mapNote:'Beim Laden werden Daten an Google übertragen. Siehe Datenschutzerklärung.',mapLoaded:'Karte geladen – Hopfensack 18, 20457 Hamburg'},
       footer:{tagline:'Authentische italienische Küche im Herzen der Hamburger Altstadt. Benvenuti.',visit:'Besuch',legal:'Rechtliches',impressum:'Impressum',datenschutz:'Datenschutzerklärung',cookies:'Cookie-Einstellungen',rights:'Alle Rechte vorbehalten.',made:'Buon appetito · Hamburg'},
-      cookie:{title:'Wir respektieren Ihre Privatsphäre',text:'Wir verwenden Cookies, um unsere Website bereitzustellen und – mit Ihrer Einwilligung – die Nutzung zu analysieren und unsere Werbung zu verbessern (Meta Pixel). Analyse-, Marketing- und Karten-Dienste werden erst nach Ihrer Zustimmung geladen.',all:'Alle akzeptieren',necessary:'Nur notwendige',settings:'Einstellungen',save:'Auswahl speichern',necTitle:'Notwendige Cookies',necDesc:'Erforderlich für den Betrieb der Website. Immer aktiv.',statTitle:'Statistik & Marketing',statDesc:'Google Analytics 4 mit Consent Mode und Meta Pixel (Meta Platforms Ireland Ltd.). Hilft uns, die Website und unsere Werbung zu verbessern.',always:'Immer aktiv'},
+      cookie:{title:'Wir respektieren Ihre Privatsphäre',text:'Wir verwenden Cookies, um unsere Website bereitzustellen und – mit Ihrer Einwilligung – die Wirkung unserer Werbung zu messen (Meta Pixel). Marketing- und Karten-Dienste werden erst nach Ihrer Zustimmung geladen.',all:'Alle akzeptieren',necessary:'Nur notwendige',settings:'Einstellungen',save:'Auswahl speichern',necTitle:'Notwendige Cookies',necDesc:'Erforderlich für den Betrieb der Website. Immer aktiv.',statTitle:'Marketing',statDesc:'Meta Pixel (Meta Platforms Ireland Ltd.). Hilft uns, die Wirkung unserer Werbung auf Instagram und Facebook zu messen.',always:'Immer aktiv'},
       legal:{back:'Zurück zur Startseite'},
-      impressum:{title:'Impressum',sub:'Angaben gemäß § 5 TMG'},
-      datenschutz:{title:'Datenschutzerklärung',sub:'Gemäß DSGVO und TTDSG · Stand 2026'},
+      impressum:{title:'Impressum',sub:'Angaben gemäß § 5 DDG'},
+      datenschutz:{title:'Datenschutzerklärung',sub:'Gemäß DSGVO und TDDDG · Stand 2026'},
     },
     en: {
       nav:{about:'About',menu:'Menu',catering:'Catering',gallery:'Gallery',reviews:'Reviews',contact:'Contact'},
@@ -626,13 +633,13 @@ class Component extends DCLogic {
       reserve:{eyebrow:'Reservation',title:'Just give us a call',subtitle:'We love the personal touch: call us and we’ll tell you right away if a table is free – even for tonight.',hours:'Mon–Fri 11:30–15 & 17–22 · Sat 16–23 · Sun 17–22',callCta:'Call us now',orForm:'Or send a quick request',formHint:'Leave your details and we’ll call you back to confirm.',submit:'Send request',privacy:'By submitting you agree to the processing of your data per our privacy policy.',successTitle:'Grazie!',again:'New request',successPrefix:'Thank you',note:'For larger groups, birthdays or celebrations just give us a call – we’ll find the right table for you.'},
       fields:{name:'Name',phone:'Phone number',email:'E-mail',date:'Date',time:'Time',guests:'Guests',occasion:'Occasion (optional)',message:'Message',eventType:'Type of event'},
       gallery:{eyebrow:'Gallery',title:'Atmosphere & taste',note:'Real impressions from our ristorante.',items:['Wood-fired pizza','Pizza Napoli','Tartufo ice dessert','Spaghetti Scampi','Summer evenings on the terrace','Our dining room']},
-      reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.',badge:'4.7 ★ · 375 reviews on Google'},
+      reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.',badge:'4.7 ★ · 400+ reviews on Google'},
       contact:{eyebrow:'Contact',title:'Visit us',addr:'Address',phone:'Phone',email:'E-mail',hours:'Opening hours',daysAll:'Mon – Sun',kitchen:'Hot kitchen until 21:30 · Sat until 22:30',pause:'Lunch break daily 15:00–17:00 (Mon–Fri)',mapBtn:'Load Google Maps',mapNote:'Loading transfers data to Google. See privacy policy.',mapLoaded:'Map loaded – Hopfensack 18, 20457 Hamburg'},
       footer:{tagline:'Authentic Italian cuisine in the heart of Hamburg’s Old Town. Benvenuti.',visit:'Visit',legal:'Legal',impressum:'Imprint',datenschutz:'Privacy policy',cookies:'Cookie settings',rights:'All rights reserved.',made:'Buon appetito · Hamburg'},
-      cookie:{title:'We respect your privacy',text:'We use cookies to provide our website and – with your consent – to analyse usage and improve our advertising (Meta Pixel). Analytics, marketing and map services load only after your consent.',all:'Accept all',necessary:'Necessary only',settings:'Settings',save:'Save selection',necTitle:'Necessary cookies',necDesc:'Required for the website to function. Always active.',statTitle:'Statistics & marketing',statDesc:'Google Analytics 4 with Consent Mode and Meta Pixel (Meta Platforms Ireland Ltd.). Helps us improve the site and our advertising.',always:'Always on'},
+      cookie:{title:'We respect your privacy',text:'We use cookies to provide our website and – with your consent – to measure the effect of our ads (Meta Pixel). Marketing and map services load only after your consent.',all:'Accept all',necessary:'Necessary only',settings:'Settings',save:'Save selection',necTitle:'Necessary cookies',necDesc:'Required for the website to function. Always active.',statTitle:'Marketing',statDesc:'Meta Pixel (Meta Platforms Ireland Ltd.). Helps us measure the effect of our ads on Instagram and Facebook.',always:'Always on'},
       legal:{back:'Back to home'},
-      impressum:{title:'Imprint',sub:'Information pursuant to § 5 TMG'},
-      datenschutz:{title:'Privacy policy',sub:'Per GDPR and TTDSG · 2026'},
+      impressum:{title:'Imprint',sub:'Information pursuant to § 5 DDG'},
+      datenschutz:{title:'Privacy policy',sub:'Per GDPR and TDDDG · 2026'},
     }
   };
 
@@ -765,7 +772,7 @@ class Component extends DCLogic {
   impressum(t) {
     const de = t.lang==='de';
     return [
-      {h:de?'Angaben gemäß § 5 DDG':'Information per § 5 DDG', ps:['Primavera Bistro\nHopfensack 18\n20457 Hamburg\nDeutschland']},
+      {h:de?'Angaben gemäß § 5 DDG':'Information per § 5 DDG', ps:['Primavera Bistro Pizzeria\nInhaber: Hamza Karateke\nHopfensack 18\n20457 Hamburg\nDeutschland']},
       {h:de?'Kontakt':'Contact', ps:['Telefon: +49 40 32506940\nE-Mail: primavera.altstadt@gmail.com']},
       {h:de?'Vertreten durch':'Represented by', ps:['Hamza Karateke']},
       {h:de?'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV':'Responsible for content (§ 18 (2) MStV)', ps:['Hamza Karateke\nHopfensack 18\n20457 Hamburg\nDeutschland']},
@@ -779,7 +786,7 @@ class Component extends DCLogic {
     const de = t.lang==='de';
     return [
       {h:de?'Allgemeine Hinweise':'General information', ps:[de?'Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften (DSGVO).':'The protection of your personal data is important to us. We treat your personal data confidentially and in accordance with statutory data protection regulations (GDPR).']},
-      {h:de?'Verantwortlicher':'Controller', ps:[de?'Primavera Bistro\nHopfensack 18\n20457 Hamburg\nDeutschland\nE-Mail: primavera.altstadt@gmail.com\nVerantwortlich: Hamza Karateke':'Primavera Bistro\nHopfensack 18\n20457 Hamburg\nGermany\nEmail: primavera.altstadt@gmail.com\nResponsible: Hamza Karateke']},
+      {h:de?'Verantwortlicher':'Controller', ps:[de?'Primavera Bistro Pizzeria\nInhaber: Hamza Karateke\nHopfensack 18\n20457 Hamburg\nDeutschland\nE-Mail: primavera.altstadt@gmail.com\nVerantwortlich: Hamza Karateke':'Primavera Bistro Pizzeria\nOwner: Hamza Karateke\nHopfensack 18\n20457 Hamburg\nGermany\nEmail: primavera.altstadt@gmail.com\nResponsible: Hamza Karateke']},
       {h:de?'Erhebung und Speicherung personenbezogener Daten':'Collection and storage of personal data', ps:[de?'Beim Besuch unserer Website werden automatisch Informationen durch den Server erfasst (z. B. IP-Adresse, Browsertyp, Datum und Uhrzeit).':'When you visit our website, information is automatically collected by the server (e.g. IP address, browser type, date and time).']},
       {h:de?'Kontaktaufnahme':'Contacting us', ps:[de?'Wenn Sie uns per E-Mail oder Telefon kontaktieren, werden Ihre Angaben zur Bearbeitung Ihrer Anfrage gespeichert.':'If you contact us by email or phone, your details will be stored in order to process your request.']},
       {h:'Instagram', ps:[de?'Wir betreiben eine Präsenz auf Instagram. Anbieter ist Meta Platforms Ireland Ltd. Beim Besuch unserer Instagram-Seite können personenbezogene Daten durch Meta verarbeitet werden.':'We maintain a presence on Instagram. The provider is Meta Platforms Ireland Ltd. When you visit our Instagram page, personal data may be processed by Meta.']},
