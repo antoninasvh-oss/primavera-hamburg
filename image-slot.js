@@ -401,7 +401,7 @@
 
   class ImageSlot extends HTMLElement {
     static get observedAttributes() {
-      return ['shape', 'radius', 'mask', 'fit', 'placeholder', 'src', 'id', 'credit', 'credit-href'];
+      return ['shape', 'radius', 'mask', 'fit', 'placeholder', 'src', 'id', 'credit', 'credit-href', 'alt'];
     }
 
     /** Duplicate-slide hook (called by deck-stage, see its
@@ -634,6 +634,7 @@
     }
 
     connectedCallback() {
+      queueMicrotask(() => this._syncAlt());
       // Warn once per page — an id-less slot works for the session but
       // cannot persist, and two id-less slots would share nothing.
       if (!this.id && !ImageSlot._warned) {
@@ -764,7 +765,14 @@
     // Public: host's "Import from computer" calls this to run local browse.
     openFilePicker() { this._exitReframe(true); this._input.click(); }
 
-    attributeChangedCallback() { if (this.shadowRoot) this._render(); }
+    attributeChangedCallback() { if (this.shadowRoot) this._render(); this._syncAlt(); }
+
+    // Primavera: pass the alt attribute through to the inner <img> (SEO + screen readers)
+    _syncAlt() {
+      const img = this.shadowRoot && this.shadowRoot.querySelector('img[part="image"]');
+      if (img) img.alt = this.getAttribute('alt') || '';
+      if (this.hasAttribute('alt')) { this.setAttribute('role', 'img'); this.setAttribute('aria-label', this.getAttribute('alt')); }
+    }
 
     // handleEvent — one listener object for all four drag events keeps the
     // add/remove symmetric and the depth counter correct.

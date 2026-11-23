@@ -3,6 +3,7 @@
 # Запускати після кожної зміни index.html:  sh build-pages.sh
 set -e
 cd "$(dirname "$0")"
+node tools/build-seo.mjs
 make_page() {
   slug="$1"; title="$2"
   mkdir -p "$slug"
