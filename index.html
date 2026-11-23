@@ -64,6 +64,8 @@
   html{scroll-behavior:smooth}
   body{-webkit-font-smoothing:antialiased;background:#F4EBDD}
   input,select,textarea,button{font-family:inherit}
+  [data-inq] input:focus,[data-inq] textarea:focus{border-color:#B25A30!important;box-shadow:0 0 0 3px rgba(178,90,48,.15)}
+  [data-inq] button:focus-visible{outline:2px solid #B25A30;outline-offset:2px}
   ::selection{background:#B25A30;color:#FBF6EC}
   @keyframes floatup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -85,6 +87,8 @@
     [data-grid="reviews"]>div{flex:0 0 82%!important}
   }
   @media(max-width:560px){
+    [data-grid="form2"]{grid-template-columns:1fr!important}
+    [data-grid="form3"]{grid-template-columns:1fr 1fr!important}
     [data-grid="gallery"]{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:14px;margin:0 -18px;padding:0 18px 6px}
     [data-grid="gallery"]::-webkit-scrollbar{display:none}
     [data-grid="gallery"]>div{flex:0 0 78%!important;scroll-snap-align:center}
@@ -260,7 +264,7 @@
             <div style="margin-top:22px">
               <a href="tel:+494032506940" style="display:inline-block;background:#B25A30;color:#FBF6EC;border-radius:32px;padding:14px 34px;font-size:15px;font-weight:500;letter-spacing:.4px;text-decoration:none" style-hover="background:#9c4a26">{{ t.reserve.callCta }}</a>
             </div>
-            <div style="margin-top:24px;padding-top:22px;border-top:1px solid rgba(42,32,24,.12);font-size:14px;color:#57493B">{{ t.catering.orMail }}<br><a href="mailto:primavera.altstadt@gmail.com" style="color:#5C6638;text-decoration:none;border-bottom:1px solid rgba(92,102,56,.4)" style-hover="color:#2A2018">primavera.altstadt@gmail.com</a></div>
+            <div style="margin-top:24px;padding-top:22px;border-top:1px solid rgba(42,32,24,.12);font-size:14px;color:#57493B"><button type="button" onClick="{{ openInqCatering }}" style="display:inline-block;background:none;border:1.5px solid #5C6638;color:#5C6638;border-radius:30px;padding:11px 26px;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:16px" style-hover="background:#5C6638;color:#FBF6EC">{{ t.inq.cateringBtn }}</button><br>{{ t.catering.orMail }}<br><a href="mailto:primavera.altstadt@gmail.com" style="color:#5C6638;text-decoration:none;border-bottom:1px solid rgba(92,102,56,.4)" style-hover="color:#2A2018">primavera.altstadt@gmail.com</a></div>
           </div>
         </div>
       </div>
@@ -282,6 +286,76 @@
           <a href="tel:+494032506940" style="display:inline-block;background:#B25A30;color:#FBF6EC;border-radius:32px;padding:15px 36px;font-size:15px;font-weight:500;letter-spacing:.4px;text-decoration:none" style-hover="background:#c66534">{{ t.reserve.callCta }}</a>
         </div>
         <p style="font-size:13px;color:rgba(251,246,236,.6);margin-top:20px">{{ t.reserve.hours }}</p>
+      </div>
+
+      <!-- ANFRAGE-FORMULAR (→ Formspree → primavera.altstadt@gmail.com) -->
+      <div id="anfrage" data-inq style="max-width:680px;margin:44px auto 0;background:#FBF6EC;border-radius:12px;padding:40px clamp(20px,5vw,40px);box-shadow:0 28px 60px -34px rgba(42,32,24,.45);color:#2A2018">
+        <sc-if value="{{ inqNotDone }}">
+          <div style="text-align:center;margin-bottom:24px">
+            <p style="font-family:'Marck Script',cursive;font-size:30px;color:#B25A30;line-height:1;margin-bottom:10px">Scrivici!</p>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.6vw,32px);font-weight:600;margin-bottom:8px">{{ t.inq.title }}</h3>
+            <p style="font-size:14.5px;line-height:1.7;color:#57493B;max-width:480px;margin:0 auto">{{ t.inq.sub }}</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:26px">
+            <sc-for list="{{ inqTypes }}" as="ty" hint-placeholder-count="3">
+              <button type="button" onClick="{{ ty.onClick }}" aria-pressed="{{ ty.pressed }}" style="{{ ty.style }}">{{ ty.label }}</button>
+            </sc-for>
+          </div>
+          <form onSubmit="{{ submitInq }}" novalidate="novalidate" style="display:grid;gap:16px;text-align:left">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" data-grid="form2">
+              <label style="{{ labelStyle }}">{{ t.inq.name }} *
+                <input id="inq-name" name="name" type="text" autocomplete="name" value="{{ inq.name }}" onInput="{{ updateInq }}" style="{{ inqStName }}">
+                <sc-if value="{{ inqErr.name }}"><span style="{{ errStyle }}">{{ inqErr.name }}</span></sc-if>
+              </label>
+              <label style="{{ labelStyle }}">{{ t.inq.phone }} *
+                <input id="inq-phone" name="phone" type="tel" autocomplete="tel" value="{{ inq.phone }}" onInput="{{ updateInq }}" style="{{ inqStPhone }}">
+                <sc-if value="{{ inqErr.phone }}"><span style="{{ errStyle }}">{{ inqErr.phone }}</span></sc-if>
+              </label>
+            </div>
+            <label style="{{ labelStyle }}">{{ t.inq.email }}
+              <input id="inq-email" name="email" type="email" autocomplete="email" value="{{ inq.email }}" onInput="{{ updateInq }}" style="{{ inqStEmail }}">
+              <sc-if value="{{ inqErr.email }}"><span style="{{ errStyle }}">{{ inqErr.email }}</span></sc-if>
+            </label>
+            <sc-if value="{{ inqNeedsDate }}">
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" data-grid="form3">
+                <label style="{{ labelStyle }}">{{ t.inq.date }}{{ inqDateMark }}
+                  <input id="inq-date" name="date" type="date" min="{{ inqMinDate }}" value="{{ inq.date }}" onInput="{{ updateInq }}" style="{{ inqStDate }}">
+                  <sc-if value="{{ inqErr.date }}"><span style="{{ errStyle }}">{{ inqErr.date }}</span></sc-if>
+                </label>
+                <label style="{{ labelStyle }}">{{ t.inq.time }}
+                  <input id="inq-time" name="time" type="time" value="{{ inq.time }}" onInput="{{ updateInq }}" style="{{ inputStyle }}">
+                </label>
+                <label style="{{ labelStyle }}">{{ t.inq.guests }}
+                  <input id="inq-guests" name="guests" type="number" min="1" max="200" inputmode="numeric" value="{{ inq.guests }}" onInput="{{ updateInq }}" style="{{ inputStyle }}">
+                </label>
+              </div>
+            </sc-if>
+            <label style="{{ labelStyle }}">{{ t.inq.message }}
+              <textarea id="inq-message" name="message" rows="4" value="{{ inq.message }}" onInput="{{ updateInq }}" placeholder="{{ inqPlaceholder }}" style="{{ textareaStyle }}"></textarea>
+            </label>
+            <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <div>
+              <label style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.55;color:#57493B;cursor:pointer">
+                <input id="inq-consent" name="consent" type="checkbox" checked="{{ inq.consent }}" onChange="{{ toggleInqConsent }}" style="margin-top:3px;width:18px;height:18px;flex:none;accent-color:#B25A30">
+                <span>{{ t.inq.consent }} *</span>
+              </label>
+              <button type="button" onClick="{{ goDatenschutz }}" style="background:none;border:none;padding:0 0 0 28px;color:#5C6638;font-size:13px;text-decoration:underline;cursor:pointer">{{ t.footer.datenschutz }}</button>
+              <sc-if value="{{ inqErr.consent }}"><span style="{{ errStyle }};padding-left:28px">{{ inqErr.consent }}</span></sc-if>
+            </div>
+            <sc-if value="{{ inqFail }}">
+              <p role="alert" style="background:#f8e1dc;color:#8a2a1c;border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.6">{{ t.inq.fail }}</p>
+            </sc-if>
+            <button type="submit" disabled="{{ inqSending }}" style="{{ inqSubmitStyle }}" style-hover="background:#9c4a26">{{ inqSubmitLabel }}</button>
+            <p style="font-size:12.5px;color:#8a7c6c;text-align:center;line-height:1.6">{{ t.inq.hint }}</p>
+          </form>
+        </sc-if>
+        <sc-if value="{{ inqDone }}">
+          <div role="status" style="text-align:center;padding:10px 0">
+            <p style="font-family:'Marck Script',cursive;font-size:40px;color:#B25A30;line-height:1;margin-bottom:12px">Grazie!</p>
+            <p style="font-size:16px;line-height:1.75;color:#57493B;max-width:460px;margin:0 auto 22px">{{ inqThanks }}</p>
+            <button type="button" onClick="{{ resetInq }}" style="background:none;border:1px solid rgba(42,32,24,.25);border-radius:30px;padding:11px 26px;font-size:14px;color:#2A2018;cursor:pointer" style-hover="border-color:#B25A30;color:#B25A30">{{ t.inq.again }}</button>
+          </div>
+        </sc-if>
       </div>
 
       <p style="text-align:center;font-size:14px;color:#8a7c6c;margin:24px auto 0;max-width:460px;line-height:1.7">{{ t.reserve.note }}</p>
@@ -562,12 +636,11 @@ class Component extends DCLogic {
     statsOn: false,
     mapConsent: false,
     activeMenuCat: 'pizza',
-    res: { name:'', phone:'', email:'', date:'', time:'', guests:'2', occasion:'', message:'' },
-    resErrors: {},
-    resDone: false,
-    cat: { name:'', email:'', phone:'', etype:'', date:'', guests:'', message:'' },
-    catErrors: {},
-    catDone: false,
+    inq: { type:'tisch', name:'', phone:'', email:'', date:'', time:'', guests:'2', message:'', consent:false },
+    inqErr: {},
+    inqSending: false,
+    inqDone: false,
+    inqFail: false,
     lightbox: null,
   };
 
@@ -611,6 +684,7 @@ class Component extends DCLogic {
       menuCats:{antipasti:'Antipasti',salate:'Insalata',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Birra',hauswein:'Hauswein',vini:'Vini',spritz:'Spritz & Cocktails',caffe:'Caffè'},
       catering:{eyebrow:'Catering Hamburg',title:'Italienisch genießen – an Ihrem Ort',subtitle:'Ob Firmenfeier, Hochzeit oder privates Fest: Wir bringen unsere Küche zu Ihnen. Vom Antipasti-Buffet bis zum Vollservice mit Personal.',s1:'Firmenfeier',s2:'Geburtstag',s3:'Hochzeit',s4:'Private Veranstaltung',services:[{t:'Firmenfeiern',d:'Buffets & Fingerfood fürs Büro und Events.'},{t:'Geburtstage',d:'Persönliche Menüs für jeden Anlass.'},{t:'Hochzeiten',d:'Vom Aperitivo bis zum Dolce-Buffet.'},{t:'Private Feiern',d:'Familienfeste & Dinner zu Hause.'}],formTitle:'Catering anfragen',formSub:'Erzählen Sie uns von Ihrer Veranstaltung – wir melden uns mit einem Angebot.',submit:'Anfrage senden',successTitle:'Grazie mille!',successText:'Ihre Catering-Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot.',contactTitle:'Sprechen wir darüber',contactText:'Erzählen Sie uns von Ihrer Feier – am schnellsten telefonisch. Wir stellen Ihr Menü persönlich zusammen.',orMail:'Oder schreiben Sie uns:'},
       reserve:{eyebrow:'Reservierung',title:'Einfach anrufen',subtitle:'Am liebsten ganz persönlich: Rufen Sie uns an – wir sagen Ihnen sofort, ob ein Tisch frei ist, auch für heute Abend.',hours:'Mo–Fr 11:30–15 & 17–22 Uhr · Sa 16–23 Uhr · So 17–22 Uhr',callCta:'Jetzt anrufen',orForm:'Oder kurz online anfragen',formHint:'Hinterlassen Sie Ihre Daten – wir rufen zur Bestätigung kurz zurück.',submit:'Anfrage senden',privacy:'Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer Datenschutzerklärung zu.',successTitle:'Grazie!',again:'Weitere Anfrage',successPrefix:'Vielen Dank',note:'Für größere Gruppen, Geburtstage oder Feiern rufen Sie uns einfach an – wir finden den passenden Tisch für Sie.'},
+      inq:{title:'Anfrage per E-Mail',sub:'Schreiben Sie uns rund um die Uhr – wir melden uns während der Öffnungszeiten, meist am selben Tag.',types:{tisch:'Tisch reservieren',catering:'Catering & Gruppen',frage:'Allgemeine Frage'},name:'Name',phone:'Telefon',email:'E-Mail (für die Antwort)',date:'Datum',time:'Uhrzeit',guests:'Personen',message:'Nachricht',ph:{tisch:'z. B. Kinderstuhl, Terrasse, Anlass …',catering:'Art der Veranstaltung, Ort, Wünsche …',frage:'Ihre Frage …'},consent:'Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet und dafür über den Dienst Formspree (USA) an das Restaurant übermittelt werden. Widerruf jederzeit per E-Mail möglich.',submit:'Anfrage senden',sending:'Wird gesendet …',hint:'Eine Tischanfrage ist erst nach unserer Bestätigung verbindlich. Für heute Abend bitte lieber anrufen: 040 325 06 940.',thanks:'Vielen Dank! Ihre Anfrage ist bei uns angekommen. Wir melden uns so schnell wie möglich – bei Reservierungen bestätigen wir telefonisch oder per E-Mail.',thanksMail:'Ihr E-Mail-Programm hat sich geöffnet. Bitte senden Sie die vorbereitete E-Mail ab – erst dann ist Ihre Anfrage bei uns.',fail:'Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder rufen Sie uns an: 040 325 06 940.',again:'Neue Anfrage',cateringBtn:'Online anfragen',req:'Bitte ausfüllen',badEmail:'Bitte gültige E-Mail angeben',badDate:'Datum liegt in der Vergangenheit',needConsent:'Bitte bestätigen Sie die Einwilligung'},
       fields:{name:'Name',phone:'Telefonnummer',email:'E-Mail',date:'Datum',time:'Uhrzeit',guests:'Anzahl Personen',occasion:'Anlass (optional)',message:'Nachricht',eventType:'Art der Veranstaltung'},
       gallery:{eyebrow:'Galerie',title:'Atmosphäre & Geschmack',note:'Echte Eindrücke aus unserem Restaurant.',items:['Pizza aus dem Holzofen','Pizza Napoli','Tartufo Eisdessert','Spaghetti Scampi','Sommerabende auf der Terrasse','Unser Gastraum']},
       reviews:{eyebrow:'Gästestimmen',title:'Was unsere Gäste sagen',note:'Echte Bewertungen von Google & Tripadvisor.',badge:'4,7 ★ · über 400 Bewertungen bei Google'},
@@ -631,6 +705,7 @@ class Component extends DCLogic {
       menuCats:{antipasti:'Antipasti',salate:'Salads',pizza:'Pizza',pasta:'Pasta',auflauf:'Al Forno',dolci:'Dolci',nonalcohol:'Non Alcohol',birra:'Beer',hauswein:'House wine',vini:'Wines',spritz:'Spritz & Cocktails',caffe:'Coffee'},
       catering:{eyebrow:'Catering Hamburg',title:'Enjoy Italian – at your place',subtitle:'Company party, wedding or private celebration: we bring our kitchen to you. From an antipasti buffet to full service with staff.',s1:'Company party',s2:'Birthday',s3:'Wedding',s4:'Private event',services:[{t:'Company parties',d:'Buffets & finger food for office & events.'},{t:'Birthdays',d:'Personal menus for any occasion.'},{t:'Weddings',d:'From the aperitivo to the dolci buffet.'},{t:'Private events',d:'Family celebrations & dinners at home.'}],formTitle:'Request catering',formSub:'Tell us about your event – we’ll get back with a quote.',submit:'Send request',successTitle:'Grazie mille!',successText:'Your catering request has been received. We’ll get back to you within 24 hours with a personal quote.',contactTitle:'Let’s talk it through',contactText:'Tell us about your event – fastest by phone. We’ll put together your menu personally.',orMail:'Or drop us a line:'},
       reserve:{eyebrow:'Reservation',title:'Just give us a call',subtitle:'We love the personal touch: call us and we’ll tell you right away if a table is free – even for tonight.',hours:'Mon–Fri 11:30–15 & 17–22 · Sat 16–23 · Sun 17–22',callCta:'Call us now',orForm:'Or send a quick request',formHint:'Leave your details and we’ll call you back to confirm.',submit:'Send request',privacy:'By submitting you agree to the processing of your data per our privacy policy.',successTitle:'Grazie!',again:'New request',successPrefix:'Thank you',note:'For larger groups, birthdays or celebrations just give us a call – we’ll find the right table for you.'},
+      inq:{title:'Send us a request',sub:'Write to us any time – we reply during opening hours, usually the same day.',types:{tisch:'Book a table',catering:'Catering & groups',frage:'General question'},name:'Name',phone:'Phone',email:'E-mail (for our reply)',date:'Date',time:'Time',guests:'Guests',message:'Message',ph:{tisch:'e.g. high chair, terrace, occasion …',catering:'Type of event, location, wishes …',frage:'Your question …'},consent:'I agree that my details will be processed to handle my request and transmitted to the restaurant via the service Formspree (USA). I can withdraw my consent at any time by e-mail.',submit:'Send request',sending:'Sending …',hint:'A table request is only binding once we confirm it. For tonight, please call us: 040 325 06 940.',thanks:'Thank you! We have received your request and will get back to you as soon as possible – reservations are confirmed by phone or e-mail.',thanksMail:'Your e-mail app has opened. Please send the prepared e-mail – only then will your request reach us.',fail:'Your request could not be sent right now. Please try again or call us: 040 325 06 940.',again:'New request',cateringBtn:'Request online',req:'Required',badEmail:'Please enter a valid e-mail',badDate:'This date is in the past',needConsent:'Please confirm your consent'},
       fields:{name:'Name',phone:'Phone number',email:'E-mail',date:'Date',time:'Time',guests:'Guests',occasion:'Occasion (optional)',message:'Message',eventType:'Type of event'},
       gallery:{eyebrow:'Gallery',title:'Atmosphere & taste',note:'Real impressions from our ristorante.',items:['Wood-fired pizza','Pizza Napoli','Tartufo ice dessert','Spaghetti Scampi','Summer evenings on the terrace','Our dining room']},
       reviews:{eyebrow:'Guest voices',title:'What our guests say',note:'Real reviews from Google & Tripadvisor.',badge:'4.7 ★ · 400+ reviews on Google'},
@@ -788,7 +863,8 @@ class Component extends DCLogic {
       {h:de?'Allgemeine Hinweise':'General information', ps:[de?'Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften (DSGVO).':'The protection of your personal data is important to us. We treat your personal data confidentially and in accordance with statutory data protection regulations (GDPR).']},
       {h:de?'Verantwortlicher':'Controller', ps:[de?'Primavera Bistro Pizzeria\nInhaber: Hamza Karateke\nHopfensack 18\n20457 Hamburg\nDeutschland\nE-Mail: primavera.altstadt@gmail.com\nVerantwortlich: Hamza Karateke':'Primavera Bistro Pizzeria\nOwner: Hamza Karateke\nHopfensack 18\n20457 Hamburg\nGermany\nEmail: primavera.altstadt@gmail.com\nResponsible: Hamza Karateke']},
       {h:de?'Erhebung und Speicherung personenbezogener Daten':'Collection and storage of personal data', ps:[de?'Beim Besuch unserer Website werden automatisch Informationen durch den Server erfasst (z. B. IP-Adresse, Browsertyp, Datum und Uhrzeit).':'When you visit our website, information is automatically collected by the server (e.g. IP address, browser type, date and time).']},
-      {h:de?'Kontaktaufnahme':'Contacting us', ps:[de?'Wenn Sie uns per E-Mail oder Telefon kontaktieren, werden Ihre Angaben zur Bearbeitung Ihrer Anfrage gespeichert.':'If you contact us by email or phone, your details will be stored in order to process your request.']},
+      {h:de?'Kontaktaufnahme':'Contacting us', ps:[de?'Wenn Sie uns per Kontaktformular, E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben (z. B. Name, Telefonnummer, E-Mail, Datum, Personenzahl, Nachricht) zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Reservierungs- und Catering-Anfragen) bzw. Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Wir löschen die Daten, sobald Ihre Anfrage erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Ihre Einwilligung können Sie jederzeit per E-Mail an primavera.altstadt@gmail.com widerrufen.':'If you contact us via the contact form, e-mail or phone, we process your details (e.g. name, phone number, e-mail, date, number of guests, message) in order to handle your request. The legal basis is Art. 6(1)(b) GDPR (reservation and catering requests) or your consent under Art. 6(1)(a) GDPR. We delete the data once your request has been dealt with, unless statutory retention obligations apply. You can withdraw your consent at any time by e-mail to primavera.altstadt@gmail.com.']},
+      {h:de?'Kontaktformular (Formspree)':'Contact form (Formspree)', ps:[de?'Für den Versand des Kontaktformulars nutzen wir den Dienst Formspree der Formspree, Inc. (USA). Beim Absenden werden Ihre Eingaben an Formspree übertragen und von dort per E-Mail an uns weitergeleitet. Dabei werden Daten in die USA übermittelt. In den USA besteht möglicherweise kein dem EU-Recht gleichwertiges Datenschutzniveau; insbesondere können US-Behörden unter Umständen auf die Daten zugreifen. Die Übermittlung erfolgt daher auf Grundlage Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a, Art. 49 Abs. 1 lit. a DSGVO), die Sie über das Kontrollkästchen im Formular erteilen. Formspree bewahrt die Eingaben bis zu 30 Tage in seinem Archiv auf. Ohne Absenden des Formulars werden keine Daten an Formspree übertragen. Alternativ erreichen Sie uns jederzeit telefonisch oder per E-Mail. Datenschutzerklärung von Formspree: https://formspree.io/legal/privacy-policy':'We use the service Formspree by Formspree, Inc. (USA) to send the contact form. When you submit it, your entries are transferred to Formspree and forwarded to us by e-mail. Data is transferred to the USA in the process. The USA may not offer a level of data protection equivalent to EU law; in particular, US authorities may be able to access the data. The transfer is therefore based on your explicit consent (Art. 6(1)(a), Art. 49(1)(a) GDPR), given via the checkbox in the form. Formspree keeps the entries in its archive for up to 30 days. No data is sent to Formspree unless you submit the form. Alternatively, you can always reach us by phone or e-mail. Formspree privacy policy: https://formspree.io/legal/privacy-policy']},
       {h:'Instagram', ps:[de?'Wir betreiben eine Präsenz auf Instagram. Anbieter ist Meta Platforms Ireland Ltd. Beim Besuch unserer Instagram-Seite können personenbezogene Daten durch Meta verarbeitet werden.':'We maintain a presence on Instagram. The provider is Meta Platforms Ireland Ltd. When you visit our Instagram page, personal data may be processed by Meta.']},
       {h:'Meta Pixel', ps:[de?'Mit Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG) setzen wir den Meta Pixel der Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland, ein. Damit messen wir die Wirksamkeit unserer Werbeanzeigen auf Facebook und Instagram (z. B. Seitenaufrufe, Klicks auf Telefon/E-Mail). Dabei können Daten an Meta, auch in die USA, übermittelt werden. Der Pixel wird erst nach Klick auf „Alle akzeptieren“ geladen; Ihre Einwilligung können Sie jederzeit über „Cookie-Einstellungen“ widerrufen.':'With your consent (Art. 6(1)(a) GDPR, § 25(1) TDDDG) we use the Meta Pixel by Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Ireland, to measure the effectiveness of our ads on Facebook and Instagram (e.g. page views, clicks on phone/e-mail). Data may be transferred to Meta, including to the USA. The pixel loads only after you click “Accept all”; you can withdraw consent at any time via “Cookie settings”.']},
       {h:'Cookies', ps:[de?'Unsere Website kann Cookies verwenden. Diese dienen dazu, unser Angebot nutzerfreundlicher zu gestalten.':'Our website may use cookies. These serve to make our offering more user-friendly.']},
@@ -822,30 +898,61 @@ class Component extends DCLogic {
 
   setMenuCat = (k) => this.setState({ activeMenuCat:k });
 
-  updateRes = (e) => { const n=e.target.name, v=e.target.value; this.setState(s=>({res:{...s.res,[n]:v}, resErrors:{...s.resErrors,[n]:undefined}})); };
-  updateCat = (e) => { const n=e.target.name, v=e.target.value; this.setState(s=>({cat:{...s.cat,[n]:v}, catErrors:{...s.catErrors,[n]:undefined}})); };
+  // Kontaktformular → Formspree. ID aus formspree.io (Teil der URL nach /f/) hier eintragen:
+  FORMSPREE_ID = 'mljbogev';
+  INQ_TO = 'primavera.altstadt@gmail.com';
 
-  submitRes = (e) => {
-    e.preventDefault();
-    const t = this.T[this.state.lang], de = this.state.lang==='de', r = this.state.res, err = {};
-    const req = de?'Pflichtfeld':'Required';
-    if(!r.name.trim()) err.name = req;
-    if(!r.phone.trim()) err.phone = req;
-    if(!r.date) err.date = req;
-    if(!r.time) err.time = req;
-    if(Object.keys(err).length){ this.setState({resErrors:err}); return; }
-    this.setState({ resDone:true, resErrors:{} });
-  };
-  resetRes = () => this.setState({ resDone:false, res:{name:'',phone:'',email:'',date:'',time:'',guests:'2',occasion:'',message:''} });
+  todayISO = () => { const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+  updateInq = (e) => { const n=e.target.name, v=e.target.value; this.setState(s=>({inq:{...s.inq,[n]:v}, inqErr:{...s.inqErr,[n]:undefined}, inqFail:false})); };
+  toggleInqConsent = (e) => { const v=!!e.target.checked; this.setState(s=>({inq:{...s.inq,consent:v}, inqErr:{...s.inqErr,consent:undefined}})); };
+  setInqType = (k) => this.setState(s=>({inq:{...s.inq,type:k, guests: k==='catering' && s.inq.guests==='2' ? '' : s.inq.guests}, inqErr:{}}));
+  openInqCatering = () => { this.setInqType('catering'); this.scrollTo('anfrage'); };
+  resetInq = () => this.setState(s=>({ inqDone:false, inqFail:false, inqViaMail:false, inqErr:{}, inq:{type:s.inq.type,name:'',phone:'',email:'',date:'',time:'',guests:'2',message:'',consent:false} }));
 
-  submitCat = (e) => {
+  submitInq = async (e) => {
     e.preventDefault();
-    const de = this.state.lang==='de', c = this.state.cat, err = {};
-    const req = de?'Pflichtfeld':'Required';
-    if(!c.name.trim()) err.name = req;
-    if(!c.email.trim()) err.email = req; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c.email)) err.email = de?'Ungültige E-Mail':'Invalid email';
-    if(Object.keys(err).length){ this.setState({catErrors:err}); return; }
-    this.setState({ catDone:true, catErrors:{} });
+    if (this.state.inqSending) return;
+    const tx = this.T[this.state.lang].inq, q = this.state.inq, err = {};
+    if (!q.name.trim()) err.name = tx.req;
+    if (!q.phone.trim() || q.phone.replace(/\D/g,'').length < 6) err.phone = tx.req;
+    if (q.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(q.email.trim())) err.email = tx.badEmail;
+    if (q.type==='tisch' && !q.date) err.date = tx.req;
+    if (q.date && q.date < this.todayISO()) err.date = tx.badDate;
+    if (!q.consent) err.consent = tx.needConsent;
+    if (Object.keys(err).length) { this.setState({ inqErr:err }); return; }
+
+    const form = e.target, hp = form && form.elements && form.elements._gotcha;
+    if (hp && hp.value) { this.setState({ inqDone:true }); return; }   // Spam-Bot
+
+    const de = this.T.de.inq, typ = de.types[q.type];
+    const dateDE = q.date ? q.date.split('-').reverse().join('.') : '';
+    const subject = 'Website-Anfrage: ' + typ + ' – ' + q.name.trim() + (dateDE ? ' – ' + dateDE : '') + (q.guests && q.type!=='frage' ? ' – ' + q.guests + ' Pers.' : '');
+    const data = { 'Anliegen':typ, 'Name':q.name.trim(), 'Telefon':q.phone.trim(), 'E-Mail':q.email.trim() || '—' };
+    if (q.type !== 'frage') { data['Datum'] = dateDE || '—'; data['Uhrzeit'] = q.time || '—'; data['Personen'] = q.guests || '—'; }
+    data['Nachricht'] = q.message.trim() || '—';
+    data['Sprache'] = this.state.lang.toUpperCase();
+    data['Einwilligung Datenschutz'] = 'ja';
+
+    if (!this.FORMSPREE_ID) {   // Fallback ohne Formspree: E-Mail-Programm öffnen
+      const body = Object.keys(data).map(k => k + ': ' + data[k]).join('\n');
+      window.location.href = 'mailto:' + this.INQ_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      this.setState({ inqDone:true, inqViaMail:true }, () => requestAnimationFrame(() => this.scrollTo('anfrage')));
+      return;
+    }
+
+    this.setState({ inqSending:true, inqFail:false });
+    try {
+      const payload = { ...data, _subject: subject };
+      if (q.email.trim()) payload.email = q.email.trim();   // Formspree: Antwort-Adresse
+      const r = await fetch('https://formspree.io/f/' + this.FORMSPREE_ID, {
+        method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(payload)
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (window.pvPixel) window.pvPixel.track('Lead', { content_category: q.type });
+      this.setState({ inqSending:false, inqDone:true, inqViaMail:false }, () => requestAnimationFrame(() => this.scrollTo('anfrage')));
+    } catch (ex) {
+      this.setState({ inqSending:false, inqFail:true });
+    }
   };
 
   openLightbox = (i) => this.setState({ lightbox:i });
@@ -864,7 +971,6 @@ class Component extends DCLogic {
     const textareaStyle = inputStyle + ';resize:vertical;font-family:inherit';
     const errStyle = 'display:block;font-size:11.5px;color:#c0392b;margin-top:4px';
 
-    const re = this.state.resErrors, ce = this.state.catErrors;
 
     const tabBase = 'border:none;border-radius:30px;padding:9px 20px;font-size:13px;letter-spacing:.4px;cursor:pointer;transition:all .2s';
     const menuCats = this.CAT_KEYS.map(k => ({
@@ -901,10 +1007,12 @@ class Component extends DCLogic {
     const statsToggleStyle = 'width:44px;height:24px;border-radius:20px;border:none;cursor:pointer;position:relative;flex:none;transition:background .2s;background:'+(toggleOn?'#5C6638':'#cbbfae');
     const statsKnobStyle = 'position:absolute;top:3px;left:'+(toggleOn?'23px':'3px')+';width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s';
 
-    const resName = this.state.res.name||'', dishThanks = lang==='de'
-      ? 'Vielen Dank, '+(this.state.res.name||'')+'! Wir haben Ihre Reservierung erhalten und bestätigen sie in Kürze per E-Mail.'
-      : 'Thank you, '+(this.state.res.name||'')+'! We have received your reservation and will confirm by email shortly.';
-
+    const tq = t.inq, iq = this.state.inq, ie = this.state.inqErr;
+    const pill = 'border-radius:30px;padding:10px 18px;font-size:13.5px;cursor:pointer;transition:all .2s;';
+    const inqTypes = ['tisch','catering','frage'].map(k => ({
+      label: tq.types[k], pressed: iq.type===k ? 'true' : 'false', onClick: () => this.setInqType(k),
+      style: pill + (iq.type===k ? 'background:#2A2018;color:#FBF6EC;border:1px solid #2A2018' : 'background:transparent;color:#57493B;border:1px solid rgba(42,32,24,.25)')
+    }));
     return {
       t,
       headerStyle: 'position:fixed;top:0;left:0;right:0;z-index:100;height:74px;transition:all .3s;'+(headerSolid?'background:rgba(28,20,13,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(0,0,0,.25)':'background:linear-gradient(rgba(20,14,8,.55),transparent)'),
@@ -938,17 +1046,18 @@ class Component extends DCLogic {
       guestOptions,
 
       labelStyle, inputStyle, textareaStyle, errStyle,
-      res: this.state.res, resErrors: re,
-      resErrName: re.name?errInput:inputStyle, resErrPhone: re.phone?errInput:inputStyle,
-      resErrEmail: re.email?errInput:inputStyle, resErrDate: re.date?errInput:inputStyle, resErrTime: re.time?errInput:inputStyle,
-      updateRes: this.updateRes, submitRes: this.submitRes, resetRes: this.resetRes,
-      resDone: this.state.resDone, resNotDone: !this.state.resDone,
-      resSuccessText: dishThanks,
-
-      cat: this.state.cat, catErrors: ce,
-      catErrName: ce.name?errInput:inputStyle, catErrEmail: ce.email?errInput:inputStyle,
-      updateCat: this.updateCat, submitCat: this.submitCat,
-      catDone: this.state.catDone, catNotDone: !this.state.catDone,
+      inq: iq, inqErr: ie, inqTypes,
+      inqStName: ie.name?errInput:inputStyle, inqStPhone: ie.phone?errInput:inputStyle,
+      inqStEmail: ie.email?errInput:inputStyle, inqStDate: ie.date?errInput:inputStyle,
+      inqNeedsDate: iq.type!=='frage', inqDateMark: iq.type==='tisch' ? ' *' : '',
+      inqMinDate: this.todayISO(), inqPlaceholder: tq.ph[iq.type],
+      updateInq: this.updateInq, toggleInqConsent: this.toggleInqConsent, submitInq: this.submitInq, resetInq: this.resetInq,
+      openInqCatering: this.openInqCatering,
+      inqSending: this.state.inqSending, inqFail: this.state.inqFail,
+      inqDone: this.state.inqDone, inqNotDone: !this.state.inqDone,
+      inqThanks: this.state.inqViaMail ? tq.thanksMail : tq.thanks,
+      inqSubmitLabel: this.state.inqSending ? tq.sending : tq.submit,
+      inqSubmitStyle: 'width:100%;background:#B25A30;color:#FBF6EC;border:none;border-radius:32px;padding:15px 30px;font-size:15px;font-weight:500;letter-spacing:.4px;cursor:pointer;' + (this.state.inqSending ? 'opacity:.6;cursor:wait' : ''),
 
       gallery, testimonials, hoursRows, todayName,
       lightboxOpen: this.state.lightbox!==null,
