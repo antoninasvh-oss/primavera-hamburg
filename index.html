@@ -794,6 +794,17 @@ class Component extends DCLogic {
     else if (path === '/datenschutz') this.setState({ view: 'datenschutz' });
     else this.setState({ view: 'home' });
 
+    // Links like primavera-hamburg.de/#menu (ads, auto-reply): scroll once the section is rendered
+    const hashId = (window.location.hash || '').slice(1);
+    if (hashId && /^[a-z0-9-]+$/i.test(hashId)) {
+      const jump = (n) => {
+        const el = this.findSection(hashId);
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70 });
+        else if (n < 20) setTimeout(() => jump(n + 1), 150);
+      };
+      setTimeout(() => jump(0), 300);
+    }
+
     this._onPopState = () => {
       const p = window.location.pathname.replace(/\/+$/,'') || '/';
       if (p === '/impressum') this.setState({ view: 'impressum' });
@@ -1010,10 +1021,12 @@ class Component extends DCLogic {
   setLang = (l) => this.setState({ lang: l });
   toggleNav = () => this.setState(s => ({ mobileNav: !s.mobileNav }));
 
+  // Skip the hidden SEO copy (#seo-static), which repeats some section ids
+  findSection = (id) => Array.from(document.querySelectorAll('[id="' + id + '"]')).find(e => !e.closest('#seo-static')) || null;
   scrollTo = (id) => {
     this.setState({ mobileNav: false });
     const go = () => {
-      const el = document.getElementById(id);
+      const el = this.findSection(id);
       if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
     };
     if (this.state.view !== 'home') { window.history.pushState(null, '', '/'); this.setState({ view: 'home' }, () => requestAnimationFrame(go)); }
